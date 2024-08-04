@@ -1,0 +1,92 @@
+<aside class="sidebar position-fixed top-0 left-0 overflow-auto h-100 float-left" id="show-side-navigation1">
+  <i class="uil-bars close-aside d-md-none d-lg-none" data-close="show-side-navigation1"></i>
+  <div class="sidebar-header d-flex justify-content-center align-items-center px-3 py-4">
+    <img
+         class="img-fluid mt-3 mb-2"
+         width="175"
+         src="./../../../assets/imgs/LOGO_VET.png"
+         alt="#">
+  </div>
+  <ul class="categories list-unstyled">
+    <li><i class="iconify" data-icon="ri:dashboard-line"></i><a [routerLink]="['/menu/dashboard']"> Dashboard</a></li>
+    <li *ngIf="isRecepcionista"><i class="iconify" data-icon="teenyicons:users-outline"></i><a [routerLink]="['/menu/clientes']"> Clientes</a></li>
+    <li *ngIf="isRecepcionista || isVeterinario || isGroomer"><i class="iconify" data-icon="ph:dog"></i><a [routerLink]="['/menu/mascotas']"> Mascotas</a></li>
+    <li *ngIf="isVeterinario || isAlmacenero || isAdministrador" class="has-dropdown">
+      <i class="iconify" data-icon="icon-park-twotone:rectangular-circular-connection"></i><a href="#"> Mantenedores</a>
+      <ul class="sidebar-dropdown list-unstyled">
+        <li *ngIf="isVeterinario"><i class="iconify" data-icon="ic:outline-pets"></i><a [routerLink]="['/menu/especies']">Especies</a></li>
+        <li *ngIf="isVeterinario"><i class="iconify" data-icon="fluent:animal-cat-16-filled"></i><a [routerLink]="['/menu/razas']">Razas</a></li>
+        <li *ngIf="isAlmacenero"><i class="iconify" data-icon="carbon:categories"></i><a [routerLink]="['/menu/categorias']">Categorias</a></li>
+        <li *ngIf="isAlmacenero"><i class="iconify" data-icon="material-symbols:real-estate-agent"></i><a [routerLink]="['/menu/proveedores']">Proovedores</a></li>
+        <li *ngIf="isAdministrador"><i class="iconify" data-icon="teenyicons:users-solid"></i><a [routerLink]="['/menu/usuarios']">Usuarios</a></li>
+      </ul>
+    </li>
+    <li *ngIf="isRecepcionista" class="has-dropdown">
+      <i class="iconify" data-icon="bytesize:cart"></i><a href="#"> Ventas</a>
+      <ul class="sidebar-dropdown list-unstyled">
+        <li><i class="iconify" data-icon="grommet-icons:notes"></i><a [routerLink]="['/menu/productos/seleccionar']">Generar</a></li>
+        <li><i class="iconify" data-icon="icon-park-outline:setting-config"></i><a [routerLink]="['/menu/boletas']">Historial</a></li>
+      </ul>
+    </li>
+    <li *ngIf="isAdministrador" class="has-dropdown">
+      <i class="iconify" data-icon="fluent-mdl2:shop"></i><a href="#"> Compras</a>
+      <ul class="sidebar-dropdown list-unstyled">
+        <li><i class="iconify" data-icon="grommet-icons:notes"></i><a [routerLink]="['/menu/pedidos/registrar']">Solicitar</a></li>
+        <li><i class="iconify" data-icon="icon-park-outline:setting-config"></i><a [routerLink]="['/menu/pedidos']">Historial</a></li>
+      </ul>
+    </li>
+
+    <li *ngIf="isAlmacenero"><i class="iconify" data-icon="fluent-mdl2:product-release"></i><a [routerLink]="['/menu/productos']"> Productos</a></li>
+    <li *ngIf="isVeterinario || isGroomer" class="has-dropdown">
+      <i class="iconify" data-icon="fluent:service-bell-16-regular"></i><a href="#"> Servicios</a>
+      <ul class="sidebar-dropdown list-unstyled">
+        <li *ngIf="isVeterinario"><i class="iconify" data-icon="game-icons:medical-pack-alt"></i><a [routerLink]="['/menu/tratamientos']">Tratamientos</a></li>
+        <li *ngIf="isGroomer"><i class="iconify" data-icon="streamline:travel-wafinder-sink-wash-clean-toilet-bathroom-water"></i><a [routerLink]="['/menu/banios']">Baños</a></li>
+      </ul>
+    </li>
+    <li *ngIf="isRecepcionista || isGroomer || isVeterinario"><i class="iconify" data-icon="ion:calendar-outline"></i><a [routerLink]="['/menu/citas']"> Citas Medicas</a></li>
+    <li *ngIf="isAdministrador"><i class="iconify" data-icon="nimbus:money"></i><a [routerLink]="['/menu/ingresos']"> Ingresos</a></li>
+  </ul>
+</aside>
+
+<section id="wrapper">
+  <nav class="navbar navbar-expand-md">
+    <div class="container-fluid mx-2">
+      <div class="navbar-header">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#toggle-navbar" aria-controls="toggle-navbar" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="uil-bars text-white"></i>
+        </button>
+        <a class="navbar-brand" href="#">Santos<span class="main-color">Cachorros</span></a>
+      </div>
+      <div class="collapse navbar-collapse" id="toggle-navbar">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Perfil
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item">Mi cuenta</a></li>
+              <li><a class="dropdown-item">Ayuda</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" (click)="logout()">Cerrar Sesion</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"><i class="uil-comments-alt"></i><span>01</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"><i class="uil-bell"></i><span>01</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">
+              <i data-show="show-side-navigation1" class="uil-bars show-side-btn"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <router-outlet></router-outlet>
+
+</section>

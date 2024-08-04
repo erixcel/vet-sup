@@ -1,0 +1,46 @@
+.rectangle {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  border-radius: 8px;
+  padding: 15px 20px;
+  margin-bottom: 10px;
+}
+
+.rectangle-info {
+  display: grid;
+  align-items: center;
+  margin-top: 15px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.grid-3{
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-4{
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.grid-12{
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.span-3{
+  grid-column: span 3;
+}
+
+.span-4{
+  grid-column: span 4;
+}
+
+textarea {
+  box-shadow: none !important;
+  border: 0 !important;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+
+

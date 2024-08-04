@@ -1,0 +1,120 @@
+<div class="container px-4">
+  <div class="d-flex justify-content-between align-items-center py-4">
+    <h3 class="title">Historial de Ventas</h3>
+    <div>
+      <button class="btn-pdf-config mx-1" (click)="exportarPDF()">
+        <i class="iconify" data-icon="fa-solid:file-pdf"></i> PDF
+      </button>
+      <button class="btn-excel-config ms-1" (click)="exportarExcel()">
+        <i class="iconify" data-icon="file-icons:microsoft-excel"></i> EXCEL
+      </button>
+    </div>
+  </div>
+  <div class="input-group pb-3">
+    <input type="text" class="form-control search-config" placeholder="Buscar..." [(ngModel)]="text" >
+    <div class="dropdown">
+      <button class="btn-dropdown-config" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="iconify" data-icon="uil:filter"></i> <span #texto> Cliente</span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><span class="dropdown-item" (click)="reloadFilterBoletas('cliente'); texto.textContent = ' Cliente'">Cliente</span></li>
+        <li><span class="dropdown-item" (click)="reloadFilterBoletas('fecha'); texto.textContent = ' Fecha'">Fecha</span></li>
+        <li><span class="dropdown-item" (click)="reloadFilterBoletas('usuario'); texto.textContent = ' Usuario'">Usuario</span></li>
+        <li><span class="dropdown-item" (click)="reloadFilterBoletas('tipo_pago'); texto.textContent = ' Tipo pago'">Tipo pago</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table-config">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Cliente</th>
+          <th></th>
+          <th>Fecha</th>
+          <th>Usuario</th>
+          <th>Estado</th>
+          <th>Tipo Pago</th>
+          <th>Total</th>
+          <th>Mantenimiento</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let boleta of boletas | filterTable:nameColum:text:isModified | paginate: { id:'tabBoletas', itemsPerPage: 10, currentPage: page }; let i = index">
+          <td>{{boleta.id}}</td>
+          <td>{{boleta.cliente}}</td>
+          <td class="circle-image-container">
+            <img class="circle-image" src="{{boleta.foto_cliente}}" width="50" height="50" onerror="this.src='../../../assets/imgs/no-img.png'"/>
+          </td>
+          <td>{{boleta.fecha | date:'d/M/yyyy h:mm:ss a'}}</td>
+          <td>{{boleta.usuario}}</td>
+          <td>
+            <i *ngIf="boleta.estado === 'emitida'" class="iconify color-correct" data-icon="fa6-solid:check"></i>
+            <i *ngIf="boleta.estado === 'anulada'" class="iconify color-cancelled" data-icon="ooui:cancel"></i>
+            {{boleta.estado}}
+          </td>
+          <td>{{boleta.tipo_pago}}</td>
+          <td>S/. {{boleta.total}}</td>
+          <td>
+            <div class="container-horizontal-buttons">
+              <button *ngIf="boleta.estado !== 'anulada'" class="btn-cancel-config" id="abrirModal" data-bs-toggle="modal" data-bs-target="#anularModal" (click)="id=boleta.id">
+                <i class="iconify" data-icon="mdi:cancel-box-multiple"></i> Anular
+              </button>
+
+              <button class="btn-download-config" (click)="descargar(boleta.id)">
+                <i class="iconify" data-icon="ic:baseline-download"></i>
+              </button>
+              <button class="btn-preview-config" (click)="previsualizar(boleta.id)">
+                <i class="iconify" data-icon="icon-park-outline:eyes"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="ngx-pagination-container">
+    <pagination-controls
+      id="tabBoletas"
+      class="ngx-pagination"
+      (pageChange)="page = $event"
+      (pageBoundsCorrection)="page = $event"
+      [maxSize]="5"
+      [directionLinks]="true"
+      [responsive]="true"
+      previousLabel="Anterior"
+      nextLabel="Siguiente"
+      screenReaderPaginationLabel="Paginacion"
+      screenReaderPageLabel="pagina"
+      screenReaderCurrentLabel="Estas en la pagina">
+    </pagination-controls>
+  </div>
+</div>
+
+<!-- Ventana Modal -->
+<div class="modal fade" id="anularModal" style="overflow-y: auto;" >
+  <div class="modal-dialog-centered modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header bg-general-head-modal">
+        <h5 class="modal-title">Anular Boleta #{{id}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #botonCerrar></button>
+      </div>
+      <div class="modal-body bg-general-body-modal">
+        <form #anularForm="ngForm" (ngSubmit)="anular(anularForm,botonCerrar)">
+          <div class="form-group mb-3">
+            <label class="my-1 mb-2 text-white" for="motivo">Motivo de anulacion:</label>
+            <textarea class="form-control input-form-config" rows="4" name="motivo" #motivo="ngModel" [(ngModel)]="mensaje" [ngClass]="{'is-invalid': motivo.errors && (motivo.touched || anularForm.submitted), 'is-valid': ! motivo.errors}" minlength="5" required></textarea>
+            <div [hidden]="!motivo.errors?.['required']" class="invalid-feedback">Motivo requerido</div>
+            <div [hidden]="!motivo.errors?.['minlength']" class="invalid-feedback">Minimo 5 caracteres</div>
+          </div>
+          <button [hidden]="true" #enviar type="submit"></button>
+        </form>
+      </div>
+      <div class="modal-footer bg-general-body-modal">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" (click)="enviar.click()">Anular</button>
+      </div>
+    </div>
+  </div>
+</div>

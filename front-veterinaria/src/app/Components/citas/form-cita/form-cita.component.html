@@ -1,0 +1,108 @@
+<form #citaForm="ngForm" (ngSubmit)="save(citaForm,flashCita)">
+  <section class="mt-3">
+    <div class="container">
+      <div class="row mb-3">
+        <div class="col">
+          <div class="title-form-container">
+              <span><i class="iconify" data-icon="fa6-solid:book-medical"></i> {{title}}</span>
+              <img class="circle-image floating" id="openFoto" data-bs-toggle="modal" data-bs-target="#fotoModal" src="{{cita.mascota!.foto}}" width="50" height="50" onerror="this.src='../../../assets/imgs/no-img.png'"/>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3" *ngIf="isEditar">
+        <div class="col-md-4 my-1">
+          <button [routerLink]="['/menu/citas']" class="btn-return-config">
+            <i class="iconify" data-icon="ooui:arrow-previous-ltr"></i> Regresar
+          </button>
+        </div>
+        <div class="col-md-4 my-1">
+          <button type="submit" class="btn-save-config">
+            <i class="iconify" data-icon="ion:save-sharp"></i> Guardar Cita
+          </button>
+        </div>
+        <div class="col-md-4 my-1">
+          <button type="button" class="btn-delete-config" (click)="delete()">
+            <i class="iconify" data-icon="icon-park-solid:delete"></i> Eliminar Cita
+          </button>
+        </div>
+      </div>
+      <div class="row mb-3" *ngIf="!isEditar">
+        <div class="col-md-6 my-1">
+          <button [routerLink]="['/menu/citas']" class="btn-return-config">
+            <i class="iconify" data-icon="ooui:arrow-previous-ltr"></i> Regresar
+          </button>
+        </div>
+        <div class="col-md-6 my-1">
+          <button type="submit" class="btn-save-config">
+            <i class="iconify" data-icon="ion:save-sharp"></i> Guardar Cita
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="mb-3">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="card config">
+            <div class="card-header">
+              <h4 class="pt-2">Datos de la Cita</h4>
+            </div>
+            <div class="card-body">
+              <flash-messages #flashCita></flash-messages>
+              <div class="form-group mb-3">
+                <label class="mt-1 mb-2" for="mascota">Mascota:</label>
+                <input class="form-control" type="hidden" id="mascotaId" name="mascotaId" #mascotaCodigo="ngModel" [(ngModel)]="cita.mascota!.id" readonly>
+                <div class="input-group">
+                  <input class="form-control input-form-config is-valid" type="text" id="mascota" name="mascota" #mascota="ngModel" [(ngModel)]="cita.mascota!.nombre" readonly>
+                  <button class="btn-search-config" type="button">
+                    <i class="iconify" data-icon="fa-solid:search"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <label class="mt-1 mb-2" for="motivo">Motivo:</label>
+                <div class="input-group">
+                  <input class="form-control input-form-config" type="text" name="motivo" #motivo="ngModel" [(ngModel)]="cita.motivo" [ngClass]="{'is-invalid': motivo.errors && (motivo.touched || citaForm.submitted), 'is-valid': ! motivo.errors}" required >
+                  <button class="btn-dropdown-config" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="iconify" data-icon="fe:drop-down"></i>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-wide">
+                    <li><a class="dropdown-item" (click)="cita.motivo='Consulta'">Consulta</a></li>
+                    <li><a class="dropdown-item" (click)="cita.motivo='Tratamiento'">Tratamiento</a></li>
+                    <li><a class="dropdown-item" (click)="cita.motivo='Baño'">Baño</a></li>
+                    <li><a class="dropdown-item" (click)="cita.motivo='Corte'">Corte</a></li>
+                  </ul>
+                  <div [hidden]="!motivo.errors?.['required']" class="invalid-feedback">Motivo Requerido</div>
+                </div>
+              </div>
+              <div *ngIf="isEditar" class="form-group mb-3">
+                <label class="mt-1 mb-2" for="estado">Estado:</label>
+                <div class="input-group">
+                  <input class="form-control input-form-config" type="text" name="estado" #estado="ngModel" [(ngModel)]="cita.estado" [ngClass]="{'is-invalid': estado.errors && (estado.touched || citaForm.submitted), 'is-valid': ! estado.errors}" required >
+                  <button class="btn-dropdown-config" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="iconify" data-icon="fe:drop-down"></i>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-wide">
+                    <li *ngIf="cita.estado!=='atendida'"><a class="dropdown-item" (click)="cita.estado='pendiente'">pendiente</a></li>
+                    <li *ngIf="cita.estado==='cancelada'"><a class="dropdown-item" (click)="cita.estado='cancelada'">cancelada</a></li>
+                    <li *ngIf="cita.estado==='atendida'"><a class="dropdown-item" (click)="cita.estado='atendida'">atendida</a></li>
+                  </ul>
+                  <div [hidden]="!estado.errors?.['required']" class="invalid-feedback">Estado Requerido</div>
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <label class="mt-1 mb-2" for="fecha_programada">Fecha Programada:</label>
+                <input class="form-control is-valid input-form-config" type="datetime-local" name="fecha_programada" #fecha_programada="ngModel" [(ngModel)]="cita.fecha_programada" [readOnly]="cita.estado !== 'pendiente'">
+              </div>
+              <div class="form-group mb-3">
+                <label class="mt-1 mb-2" for="hechos">Hechos:</label>
+                <textarea class="form-control input-form-config is-valid" name="hechos" #hechos="ngModel" [(ngModel)]="cita.hechos" rows="5"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</form>
