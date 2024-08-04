@@ -1,0 +1,84 @@
+<div class="container px-4">
+  <div class="d-flex justify-content-between align-items-center py-4">
+    <h3 class="title">{{title}}</h3>
+    <div>
+      <button *ngIf="!isSelect" class="btn-pdf-config mx-1" (click)="exportarPDF()">
+        <i class="iconify" data-icon="fa-solid:file-pdf"></i> PDF
+      </button>
+      <button *ngIf="!isSelect" class="btn-excel-config mx-1" (click)="exportarExcel()">
+        <i class="iconify" data-icon="file-icons:microsoft-excel"></i> EXCEL
+      </button>
+      <button *ngIf="!isSelect" class="btn-add-config ms-1" [routerLink]="['/menu/clientes/registrar']">
+        <i class="iconify" data-icon="zondicons:add-outline"></i> Agregar
+      </button>
+    </div>
+  </div>
+  <div class="input-group pb-3">
+    <input type="text" class="form-control search-config" placeholder="Buscar..." [(ngModel)]="text" >
+    <div class="dropdown">
+      <button class="btn-dropdown-config" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="iconify" data-icon="uil:filter"></i> <span #texto> Nombre</span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><span class="dropdown-item" (click)="reloadFilterClientes('cliente'); texto.textContent = ' Nombre'">Nombre</span></li>
+        <li><span class="dropdown-item" (click)="reloadFilterClientes('genero'); texto.textContent = ' Genero'">Genero</span></li>
+        <li><span class="dropdown-item" (click)="reloadFilterClientes('fecha'); texto.textContent = ' Fecha'">Fecha</span></li>
+        <li><span class="dropdown-item" (click)="reloadFilterClientes('celular'); texto.textContent = ' Celular'">Celular</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table-config">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Cliente</th>
+          <th>Genero</th>
+          <th>Fecha</th>
+          <th>Celular</th>
+          <th>Foto</th>
+          <th>Mantenimiento</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cliente of clientes | filterTable:nameColum:text:isModified | paginate: { id:'tabClientes', itemsPerPage: 5, currentPage: page }; let i = index">
+          <td>{{ ((page - 1) * 5) + (i + 1) }}</td>
+          <td>{{cliente.cliente}}</td>
+          <td>{{cliente.genero}}</td>
+          <td>{{cliente.fecha | date:'d/M/yyyy h:mm:ss a'}}</td>
+          <td>{{cliente.celular}}</td>
+          <td class="circle-image-container">
+            <img class="circle-image" src="{{cliente.foto}}" width="50" height="50" onerror="this.src='../../../assets/imgs/no-img.png'"/>
+          </td>
+          <td>
+            <div class="container-horizontal-buttons">
+              <button *ngIf="isSelect" class="btn-select-config" (click)="openFormBoleta(cliente.id)">
+                <i class="fa-solid fa-check fa-shake"></i> Seleccionar
+              </button>
+              <a *ngIf="!isSelect" class="btn-edit-config" routerLink='/menu/clientes/editar/{{cliente.id}}'>
+                <i class="iconify" data-icon="uil:edit"></i> Editar
+              </a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="ngx-pagination-container">
+    <pagination-controls
+      id="tabClientes"
+      class="ngx-pagination"
+      (pageChange)="page = $event"
+      (pageBoundsCorrection)="page = $event"
+      [maxSize]="5"
+      [directionLinks]="true"
+      [responsive]="true"
+      previousLabel="Anterior"
+      nextLabel="Siguiente"
+      screenReaderPaginationLabel="Paginacion"
+      screenReaderPageLabel="pagina"
+      screenReaderCurrentLabel="Estas en la pagina">
+    </pagination-controls>
+  </div>
+</div>

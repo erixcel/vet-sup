@@ -1,0 +1,100 @@
+<div class="container px-4">
+  <div class="d-flex justify-content-between align-items-center py-4">
+    <h3 class="title">{{title}}</h3>
+    <div>
+      <button *ngIf="!isSelect" class="btn-pdf-config mx-1" (click)="exportarPDF()">
+        <i class="iconify" data-icon="fa-solid:file-pdf"></i> PDF
+      </button>
+      <button *ngIf="!isSelect" class="btn-excel-config mx-1" (click)="exportarExcel()">
+        <i class="iconify" data-icon="file-icons:microsoft-excel"></i> EXCEL
+      </button>
+      <button *ngIf="isSelect" class="btn-back-config" [routerLink]="['/menu/boletas/registrar']">
+        <i class="iconify" data-icon="material-symbols:exit-to-app"></i> Formulario Venta
+      </button>
+      <button *ngIf="!isSelect" class="btn-add-config ms-1" [routerLink]="['/menu/productos/registrar']">
+        <i class="iconify" data-icon="zondicons:add-outline"></i> Agregar
+      </button>
+    </div>
+  </div>
+  <div class="input-group pb-3">
+    <input type="text" class="form-control search-config" placeholder="Buscar..." [(ngModel)]="text" >
+    <div class="dropdown">
+      <button class="btn-dropdown-config" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="iconify" data-icon="uil:filter"></i> <span #texto> Nombre</span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><span class="dropdown-item" (click)="reloadFilterProductos('nombre'); texto.textContent = ' Nombre'">Nombre</span></li>
+        <li><span class="dropdown-item" (click)="reloadFilterProductos('categoria'); texto.textContent = ' Categoria'">Categoria</span></li>
+        <li><span class="dropdown-item" (click)="reloadFilterProductos('marca'); texto.textContent = ' Marca'">Marca</span></li>
+        <li><span class="dropdown-item" (click)="reloadFilterProductos('stock'); texto.textContent = ' Stock'">Stock</span></li>
+        <li><span class="dropdown-item" (click)="reloadFilterProductos('precio'); texto.textContent = ' Precio'">Precio</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="contenedor-productos">
+    <div *ngFor="let producto of productos | filterTable:nameColum:text:isModified | paginate: { id:'tabProductos', itemsPerPage: 10, currentPage: page }; let i = index">
+      <div class="tarjeta">
+        <div class="card rounded-2 border-1" [ngClass]="{'flipped': productosGirados.includes(producto.id)}">
+          <div class="frontal">
+            <div class="card-header bg-light-subtle p-0 border-1">
+              <img class="card-img-top" [src]="producto.foto" onerror="this.src='../../../assets/imgs/no-img.png'" alt="{{producto.nombre}}">
+            </div>
+            <div class="card-body rounded-bottom-2">
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="card-title titulo">{{producto.nombre}}</span>
+                <button class="btn circulo" (click)="pushInformation(producto.id)">
+                  <i class="iconify" data-icon="fa-solid:info"></i>
+                </button>
+              </div>
+              <p class="card-text descripcion-datos"><span class="nombre-datos">Categoria: </span>{{producto.categoria}}</p>
+              <p class="card-text descripcion-datos"><span class="nombre-datos">Marca: </span>{{producto.marca}}</p>
+              <p class="card-text descripcion-datos"><span class="nombre-datos">Uni. medida: </span>{{producto.unidad_medida}}</p>
+              <p class="card-text descripcion-datos"><span class="nombre-datos">Stock: </span>{{producto.stock}}</p>
+              <p class="card-text descripcion-datos"><span class="nombre-datos">Precio: </span>S/. {{producto.precio_venta}}</p>
+              <a *ngIf="!isSelect" routerLink="/menu/productos/editar/{{producto.id}}" class="btn cuadrado mt-2">
+                <i class="iconify" data-icon="teenyicons:edit-1-solid"></i>
+              </a>
+              <button *ngIf="isSelect" class="btn producto-button mt-2" [ngClass]="{'selected': isProductoSelected(producto.id)}" (click)="pushButtonShop(producto.id,producto.stock)">
+                <span>
+                  <i class="iconify" data-icon="icomoon-free:cart"></i>
+                </span>
+                <span class="producto-unchecked">
+                  <i class="iconify" data-icon="mdi:add-bold"></i>
+                </span>
+                <span class="producto-checked" [ngClass]="{'animated': isProductoSelected(producto.id)}">
+                  <i class="iconify" data-icon="mdi:check-bold"></i>
+                </span>
+              </button>
+            </div>
+          </div>
+          <div class="trasero h-100">
+            <div class="card-body d-flex flex-column h-100">
+              <span class="titulo texto-completo text-center my-1">{{producto.nombre}}</span>
+              <textarea class="descripcion-datos flex-grow-1 border-0 sin-borde" value="{{producto.descripcion}}" readonly></textarea>
+              <button class="btn btn-primary w-100 mt-2 bottom-0" (click)="pushInformation(producto.id)">
+                <i class="iconify" data-icon="fa6-solid:rotate"></i> Voltear
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ngx-pagination-container">
+    <pagination-controls
+      id="tabProductos"
+      class="ngx-pagination"
+      (pageChange)="page = $event"
+      (pageBoundsCorrection)="page = $event"
+      [maxSize]="5"
+      [directionLinks]="true"
+      [responsive]="true"
+      previousLabel="Anterior"
+      nextLabel="Siguiente"
+      screenReaderPaginationLabel="Paginacion"
+      screenReaderPageLabel="pagina"
+      screenReaderCurrentLabel="Estas en la pagina">
+    </pagination-controls>
+  </div>
+</div>

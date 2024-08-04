@@ -1,0 +1,83 @@
+<div class="container px-4">
+  <div class="d-flex justify-content-between align-items-center py-4">
+    <h3 class="title">Panel de Mascotas</h3>
+    <div>
+      <button class="btn-pdf-config mx-1" (click)="exportarPDF()">
+        <i class="iconify" data-icon="fa-solid:file-pdf"></i> PDF
+      </button>
+      <button class="btn-excel-config ms-1" (click)="exportarExcel()">
+        <i class="iconify" data-icon="file-icons:microsoft-excel"></i> EXCEL
+      </button>
+    </div>
+  </div>
+  <div class="input-group pb-3">
+    <input type="text" class="form-control search-config" placeholder="Buscar..." [(ngModel)]="text" >
+    <div class="dropdown">
+      <button class="btn-dropdown-config" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="iconify" data-icon="uil:filter"></i> <span #texto> Nombre</span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><span class="dropdown-item" (click)="reloadFilterMascotas('nombre'); texto.textContent = ' Nombre'">Nombre</span></li>
+        <li><span class="dropdown-item" (click)="reloadFilterMascotas('cliente'); texto.textContent = ' Cliente'">Cliente</span></li>
+        <li><span class="dropdown-item" (click)="reloadFilterMascotas('fecha'); texto.textContent = ' Fecha'">Fecha</span></li>
+        <li><span class="dropdown-item" (click)="reloadFilterMascotas('sexo'); texto.textContent = ' Sexo'">Sexo</span></li>
+        <li><span class="dropdown-item" (click)="reloadFilterMascotas('especie'); texto.textContent = ' Especie'">Especie</span></li>
+        <li><span class="dropdown-item" (click)="reloadFilterMascotas('raza'); texto.textContent = ' Raza'">Raza</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table-config">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombre</th>
+          <th>Cliente</th>
+          <th>Fecha</th>
+          <th>Sexo</th>
+          <th>Especie</th>
+          <th>Raza</th>
+          <th>Foto</th>
+          <th>Mantenimiento</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let mascota of mascotas | filterTable:nameColum:text:isModified | paginate: { id:'tabClientes', itemsPerPage: 5, currentPage: page }; let i = index">
+          <td>{{ ((page - 1) * 5) + (i + 1) }}</td>
+          <td>{{mascota.nombre}}</td>
+          <td>{{mascota.cliente}}</td>
+          <td>{{mascota.fecha | date:'d/M/yyyy h:mm:ss a'}}</td>
+          <td>{{mascota.sexo}}</td>
+          <td>{{mascota.especie}}</td>
+          <td>{{mascota.raza}}</td>
+          <td class="circle-image-container">
+            <img class="circle-image" src="{{mascota.foto}}" width="50" height="50" onerror="this.src='../../../assets/imgs/no-img.png'"/>
+          </td>
+          <td>
+            <div class="container-horizontal-buttons">
+              <!-- <button class="btn-select-config"><i class="iconify" data-icon="ion:copy-outline"></i></button> -->
+              <a class="btn-edit-config"  routerLink='/menu/mascotas/editar/{{mascota.id}}'><i class="iconify" data-icon="uil:edit"></i> Editar</a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="ngx-pagination-container">
+    <pagination-controls
+      id="tabClientes"
+      class="ngx-pagination"
+      (pageChange)="page = $event"
+      (pageBoundsCorrection)="page = $event"
+      [maxSize]="5"
+      [directionLinks]="true"
+      [responsive]="true"
+      previousLabel="Anterior"
+      nextLabel="Siguiente"
+      screenReaderPaginationLabel="Paginacion"
+      screenReaderPageLabel="pagina"
+      screenReaderCurrentLabel="Estas en la pagina">
+    </pagination-controls>
+  </div>
+</div>

@@ -1,0 +1,1068 @@
+@import url('https://fonts.googleapis.com/css2?family=Belanosima&display=swap'); /*Belanosima */
+@import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@700&display=swap'); /*Signika Negative */
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap'); /*PT Serif */
+@import url('https://fonts.googleapis.com/css2?family=Rowdies&display=swap'); /*Rowdies */
+@import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap'); /*Patua One */
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap'); /*Concert One */
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap'); /*Libre Baskerville */
+
+:root{
+  /* ------------------ color-general ------------------ */
+  --color-correct:#00ff99;
+  --color-normal:#0cbfe3;
+  --color-cancelled:#ff0000;
+  --color-head:#ffffffcc;
+  --color-body:#ffffffa8;
+
+  /* ------------------ bg-general ------------------ */
+  --bg-general-head-color: #23242f;
+  --bg-general-body-color: #333947;
+  --bg-general-head-light-color: #2d343f;
+  --bg-general-body-light-color: #454e5a;
+  --bg-general-text-head-color: #ffffffcc;
+  --bg-general-text-body-color: #ffffffa8;
+  --bg-general-body-modal-color: #454e5a;
+  --bg-general-head-modal-color: #30323f;
+  --bg-general-text-body-modal-color: #ffffffcc;
+  --bg-general-text-head-modal-color: #ffffffa8;
+  --bg-general-modal-color: rgba(0, 0, 0, 0.5);
+
+  /* ------------------ input-general ------------------ */
+  --input-general-bg-color: #37374b;
+  --input-general-text-color: #ffffffa8;
+  --input-general-place-holder-color: #ffffffa8;
+  --input-general-box-shadow-color: #414158;
+
+  /* ------------------ span-general ------------------ */
+  --span-1-general-bg-color: #23242f;
+  --span-1-general-text-color: #ffffffa8;
+
+  --span-2-general-bg-color: #37374b;
+  --span-2-general-text-color: #ffffffa8;
+
+  /* ------------------ title ------------------ */
+  --title-text-color: #ffffff;
+
+  /* ------------------ title-form ------------------ */
+  --title-form-bg-color:#191c27;
+  --title-form-text-color:#ffffffcc;
+
+  /* ------------------ search ------------------ */
+  --search-bg-color: #37374b;
+  --search-text-color: #ffffffa8;
+  --search-place-holder-color: #ffffffa8;
+  --search-box-shadow-color: #414158;
+
+  /* ------------------ search-modal ------------------ */
+  --search-bg-modal-color: #5d697b;
+  --search-text-modal-color: #ffffffa8;
+  --search-place-holder-modal-color: #ffffffa8;
+  --search-box-shadow-modal-color: #515a67;
+
+  /* ------------------ input-form ------------------ */
+  --input-form-bg-color: #5d697b;
+  --input-form-text-color: #ffffffa8;
+  --input-form-border-color: #ffffff;
+  --input-form-border-color-focus: #0cbfe3;
+  --input-form-box-shadow: #ffffff3f;
+  --input-form-box-shadow-focus: #0cbfe33f;
+
+  /* ------------------ btn-search ------------------ */
+  --btn-search-bg-color: #23242f;
+  --btn-search-text-color: #ffffffa8;
+  --btn-search-hover-color: #1a1b1e;
+
+  /* ------------------ btn-dropdown ------------------ */
+  --btn-dropdown-bg-color: #23242f;
+  --btn-dropdown-text-color: #ffffffa8;
+  --btn-dropdown-hover-color: #1a1b1e;
+  --btn-dropdown-bg-square-color: #48505d;
+  --btn-dropdown-scroll-active-color: #23242f;
+  --btn-dropdown-scroll-repose-color: #23242f;
+  --btn-dropdown-bg-variant-color: #15203e;
+  --btn-dropdown-hover-variant-color: #111a33;
+
+  /* ------------------ btn-excel ------------------ */
+  --btn-excel-bg-color:#1c2437;
+  --btn-excel-text-color:#ffffffa8;
+  --btn-excel-hover-color:#1d5735;
+
+  /* ------------------ btn-pdf ------------------ */
+  --btn-pdf-bg-color:#1c2437;
+  --btn-pdf-text-color:#ffffffa8;
+  --btn-pdf-hover-color:#602121;
+
+  /* ------------------ btn-clean ------------------ */
+  --btn-clean-bg-color: #23242f;
+  --btn-clean-text-color: #ffffffa8;
+  --btn-clean-hover-color: #1a1b1e;
+
+  /* ------------------ btn-add ------------------ */
+  --btn-add-bg-color:#191d29;
+  --btn-add-text-color:#ffffffa8;
+  --btn-add-hover-color:#313c5c;
+
+  /* ------------------ btn-edit ------------------ */
+  --btn-edit-bg-color:#1f2537;
+  --btn-edit-text-color:#ffffffa8;
+  --btn-edit-hover-color:#313c5c;
+
+  /* ------------------ btn-remove ------------------ */
+  --btn-remove-bg-color:#161a24;
+  --btn-remove-text-color:#ffffffa8;
+  --btn-remove-hover-color:#000000;
+
+  /* ------------------ btn-change ------------------ */
+  --btn-change-bg-color:#1b1f2d;
+  --btn-change-text-color:#ffffffa8;
+  --btn-change-hover-color:#313c5c;
+
+  /* ------------------ btn-select ------------------ */
+  --btn-select-bg-color:#1f283d;
+  --btn-select-text-color:#ffffffa8;
+  --btn-select-hover-color:#29385a;
+  --btn-select-box-shadow-color:#ffffff;
+
+  /* ------------------ btn-back ------------------ */
+  --btn-back-bg-color:#191d29;
+  --btn-back-text-color:#ffffffa8;
+  --btn-back-hover-color:#313c5c;
+  --btn-back-box-shadow-color:#ffffff;
+
+  /* ------------------ btn-cancel ------------------ */
+  --btn-cancel-bg-color:#971e1e;
+  --btn-cancel-text-color:#ffffff;
+  --btn-cancel-hover-color:#602121;
+
+  /* ------------------ btn-correct ------------------ */
+  --btn-correct-bg-color:#329059;
+  --btn-correct-text-color:#ffffff;
+  --btn-correct-hover-color:#1d5735;
+
+  /* ------------------ btn-download ------------------ */
+  --btn-download-bg-color:#09246f;
+  --btn-download-text-color:#ffffff;
+  --btn-download-hover-color:#071a4f;
+
+  /* ------------------ btn-preview ------------------ */
+  --btn-preview-bg-color:#ffffff;
+  --btn-preview-text-color:#09246f;
+  --btn-preview-hover-color:#ffffff;
+
+  /* ------------------ btn-return ------------------ */
+  --btn-return-bg-color:#31384e;
+  --btn-return-text-color:#ffffffa8;
+  --btn-return-hover-color:#39415b;
+
+  /* ------------------ btn-save ------------------ */
+  --btn-save-bg-color:#2a334f;
+  --btn-save-text-color:#ffffffa8;
+  --btn-save-hover-color:#1c294f;
+
+  /* ------------------ btn-delete ------------------ */
+  --btn-delete-bg-color:#1f2535;
+  --btn-delete-text-color:#ffffffa8;
+  --btn-delete-hover-color:#171b28;
+
+  /* ------------------ table ------------------ */
+  --table-bg-head-color: #23242f;
+  --table-bg-body-color: #333947;
+  --table-text-head-color: #ffffffcc;
+  --table-text-body-color: #ffffffa8;
+  --table-border-color: #8888881c;
+  --table-hover-color: #3e4454;
+
+  /* ------------------ table-form ------------------ */
+  --table-form-bg-head-color: #1f2535;
+  --table-form-bg-body-color: #5d697b;
+  --table-form-text-head-color: #ffffffcc;
+  --table-form-text-body-color: #ffffffa8;
+  --table-form-border-color: #000000a8;
+  --table-form-nth-even: #4b5564;
+  --table-form-nth-old: #556071;
+
+  /* ------------------ card ------------------ */
+  --card-head-bg-color:#23242f;
+  --card-body-bg-color:#333947;
+  --card-footer-bg-color:#333947;
+  --card-head-text-color:#ffffffcc;
+  --card-body-text-color:#ffffffa8;
+  --card-footer-text-color:#ffffffcc;
+
+  /* ------------------ ngx-pagination ------------------ */
+  --ngx-pagination-text-color: #ffffff;
+  --ngx-pagination-current-color: #2b4772;
+  --ngx-pagination-hover-color: #ffffff00;
+
+  /* ------------------ alert-danger ------------------ */
+  --alert-danger-bg-color: #602121;
+  --alert-danger-text-color: #fff;
+}
+
+  /* ------------------ color-general ------------------ */
+  .color-correct{ color: var(--color-correct); }
+  .color-cancelled{ color: var(--color-cancelled); }
+  .color-normal{ color: var(--color-normal); }
+  .color-head{ color: var(--color-head); }
+  .color-body{ color: var(--color-body); }
+
+/* ------------------ bg-general ------------------ */
+
+.bg-general-head {
+  background-color: var(--bg-general-head-color);
+  color: var(--bg-general-text-head-color);
+}
+
+.bg-general-body {
+  background-color: var(--bg-general-body-color);
+  color: var(--bg-general-text-body-color);
+}
+
+.bg-general-head-modal {
+  background-color: var(--bg-general-head-modal-color);
+  color: var(--bg-general-text-head-modal-color);
+}
+
+.bg-general-body-modal {
+  background-color: var(--bg-general-body-modal-color);
+  color: var(--bg-general-text-body-modal-color);
+}
+
+.bg-general-body-modal td, .bg-general-body-modal th{
+  color: var(--bg-general-text-body-modal-color);
+}
+
+.bg-general-head-light, .bg-general-head-light:focus {
+  background-color: var(--bg-general-head-light-color);
+}
+
+.bg-general-body-light, .bg-general-body-light:focus {
+  background-color: var(--bg-general-body-light-color);
+}
+
+.bg-general-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1050;
+  background-color: var(--bg-general-modal-color);
+}
+
+/* ------------------ input-general ------------------ */
+
+.input-general {
+  border: 0;
+  background-color: var(--input-general-bg-color);
+  color: var(--input-general-text-color);
+}
+
+.input-general:focus {
+  background-color: var(--input-general-bg-color);
+  color: var(--input-general-text-color);
+  box-shadow: 0 0 0 0.2rem var(--input-general-box-shadow-color);
+}
+
+.input-general::placeholder {
+  color: var(--input-general-place-holder-color);
+}
+
+/* ------------------ span-general ------------------ */
+
+.span-1-general {
+  border: none;
+  min-height: 100%;
+  padding: 6px 20px;
+  border-radius: 0px 4px 4px 0px;
+  color: var(--span-1-general-text-color);
+  background-color: var(--span-1-general-bg-color);
+}
+
+.span-2-general {
+  border: none;
+  min-height: 100%;
+  padding: 6px 10px;
+  border-radius: 0px 4px 4px 0px;
+  color: var(--span-2-general-text-color);
+  background-color: var(--span-2-general-bg-color);
+}
+
+.span-1-general.invert , .span-2-general.invert{
+  border-radius: 4px 0px 0px 4px;
+}
+
+.span-1-general.out , .span-2-general.out{
+  border-radius: 0px;
+}
+
+/* ------------------ title ------------------ */
+
+.title {
+  font-family: 'Belanosima', sans-serif;
+  font-size: 30px;
+  color: var(--title-text-color);
+  margin-bottom: 0px;
+}
+
+/* ------------------ title-form ------------------ */
+
+.title-form-container {
+  position: relative;
+  background-color: var(--title-form-bg-color);
+  color: var(--title-form-text-color);
+  font-weight: bold;
+  font-size: 2rem;
+  text-align: center;
+  font-family: 'Signika Negative', sans-serif;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.title-form-container .iconify {
+  font-size: 2rem;
+  padding-bottom: 6px;
+}
+
+/* ------------------ search ------------------ */
+
+.search-config {
+  border: 0;
+  background-color: var(--search-bg-color);
+  color: var(--search-text-color);
+}
+
+.search-config:focus {
+  background-color: var(--search-bg-color);
+  color: var(--search-text-color);
+  box-shadow: 0 0 0 0.2rem var(--search-box-shadow-color);
+}
+
+.search-config::placeholder {
+  color: var(--search-place-holder-color);
+}
+
+/* ------------------ search-modal ------------------ */
+
+.search-modal-config {
+  border: 0;
+  background-color: var(--search-bg-modal-color);
+  color: var(--search-text-modal-color);
+}
+
+.search-modal-config:focus {
+  background-color: var(--search-bg-modal-color);
+  color: var(--search-text-modal-color);
+  box-shadow: 0 0 0 0.2rem var(--search-box-shadow-modal-color);
+}
+
+.search-modal-config::placeholder {
+  color: var(--search-place-holder-modal-color);
+}
+
+/* ------------------ input-form ------------------ */
+
+.input-form-config {
+  border-width: 0px;
+  background-color: var(--input-form-bg-color);
+  color: var(--input-form-text-color);
+}
+
+.input-form-config:focus{
+  border-width: 2px;
+  background-color: var(--input-form-bg-color);
+  color: var(--input-form-text-color);
+  border-color: var(--input-form-border-color);
+  box-shadow: 0 0 0 0.2rem var(--input-form-box-shadow);
+}
+
+.form-control.is-valid {
+  background-image: url('https://api.iconify.design/mdi/check-bold.svg?color=%230cbfe3');
+}
+
+.form-control.is-valid:focus {
+  border-width: 2px;
+  border-color: var(--input-form-border-color-focus);
+  box-shadow: 0 0 0 0.2rem var(--input-form-box-shadow-focus);
+}
+
+.form-control.is-invalid {
+  border-width: 2px;
+}
+
+/* ------------------ btn-search ------------------ */
+
+.btn-search-config {
+  border: none;
+  min-height: 100%;
+  padding: 6px 20px;
+  font-size: 14px;
+  border-radius: 0 4px 4px 0 !important;
+  color: var(--btn-search-text-color);
+  background-color: var(--btn-search-bg-color);
+}
+
+/* ------------------ btn-dropdown ------------------ */
+
+.btn-dropdown-config {
+  border: none;
+  min-height: 100%;
+  padding: 6px 20px;
+  border-radius: 0px 4px 4px 0px !important;
+  color: var(--btn-dropdown-text-color);
+  background-color: var(--btn-dropdown-bg-color);
+}
+
+.btn-dropdown-config.variant {
+  border-radius: 4px 4px 4px 4px !important;
+  background-color: var(--btn-dropdown-bg-variant-color);
+}
+
+.btn-dropdown-config.complete {
+  border-radius: 4px 4px 4px 4px !important;
+}
+
+.btn-dropdown-config.invert {
+  border-radius: 4px 0px 0px 4px !important;
+}
+
+.btn-dropdown-config.variant:hover {
+  background-color: var(--btn-dropdown-hover-variant-color);
+}
+
+.btn-dropdown-config:hover {
+  background-color: var(--btn-dropdown-hover-color);
+}
+
+.btn-dropdown-config + ul {
+  height: auto;
+  max-height: 198px;
+  overflow-x: hidden;
+  min-width: 100%;
+  background-color: var(--btn-dropdown-bg-square-color);
+  text-align: center;
+  cursor: pointer;
+}
+.btn-dropdown-config + ul::-webkit-scrollbar {
+  border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
+	background: var(--btn-dropdown-bg-square-color);
+}
+
+.btn-dropdown-config + ul::-webkit-scrollbar-thumb {
+  border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
+  background: var(--btn-dropdown-scroll-repose-color);
+}
+
+.btn-dropdown-config + ul::-webkit-scrollbar-thumb:hover {
+  background: var(--btn-dropdown-scroll-active-color);
+}
+
+.btn-dropdown-config + ul > li{
+  font-size: 14px;
+}
+
+.btn-dropdown-config + ul *{
+  color: var(--btn-dropdown-text-color);
+}
+
+.btn-dropdown-config.min + ul > li{
+  font-size: 12px;
+}
+
+.btn-dropdown-config.min + ul > li > span{
+  padding: 4px 0px;
+}
+
+/* ------------------ btn-excel ------------------ */
+
+.btn-excel-config {
+  display: inline-block;
+  padding: 6px 20px;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 0;
+  border-radius: 4px;
+  color: var(--btn-excel-text-color);
+  background-color: var(--btn-excel-bg-color);
+}
+
+.btn-excel-config:hover {
+  background-color: var(--btn-excel-hover-color);
+}
+
+/* ------------------ btn-pdf ------------------ */
+
+.btn-pdf-config {
+  display: inline-block;
+  padding: 6px 20px;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 0;
+  border-radius: 4px;
+  color: var(--btn-pdf-text-color);
+  background-color: var(--btn-pdf-bg-color);
+}
+
+.btn-pdf-config:hover {
+  background-color: var(--btn-pdf-hover-color);
+}
+
+/* ------------------ btn-clean ------------------ */
+
+.btn-clean-config {
+  border: none;
+  min-height: 100%;
+  padding: 0px;
+  font-size: 14px;
+  border-radius: 4px;
+  color: var(--btn-clean-text-color);
+  background-color: var(--btn-clean-bg-color);
+}
+
+.btn-clean-config:hover {
+  background-color: var(--btn-clean-hover-color);
+}
+
+/* ------------------ btn-add ------------------ */
+
+.btn-add-config {
+  display: inline-block;
+  padding: 6px 20px;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 0;
+  border-radius: 4px;
+  color: var(--btn-add-text-color);
+  background-color: var(--btn-add-bg-color);
+}
+
+.btn-add-config:hover {
+  background-color: var(--btn-add-hover-color);
+}
+
+/* ------------------ btn-edit ------------------ */
+
+.btn-edit-config {
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 0;
+  border-radius: 4px;
+  color: var(--btn-edit-text-color);
+  background-color: var(--btn-edit-bg-color);
+}
+
+.btn-edit-config:hover {
+  background-color: var(--btn-edit-hover-color);
+}
+
+/* ------------------ btn-remove ------------------ */
+
+.btn-remove-config {
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 0;
+  border-radius: 4px;
+  color: var(--btn-remove-text-color);
+  background-color: var(--btn-remove-bg-color);
+}
+
+.btn-remove-config:hover {
+  background-color: var(--btn-remove-hover-color);
+}
+
+/* ------------------ btn-change ------------------ */
+
+.btn-change-config {
+  display: inline-block;
+  padding: 6px 20px;
+  margin: 0px 0px 0px 3px;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 0;
+  border-radius: 4px;
+  color: var(--btn-change-text-color);
+  background-color: var(--btn-change-bg-color);
+}
+
+.btn-change-config:hover {
+  background-color: var(--btn-change-hover-color);
+}
+
+/* ------------------ btn-select ------------------ */
+
+.btn-select-config {
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 0px 0px 0px 0px;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 0;
+  border-radius: 4px;
+  color: var(--btn-select-text-color);
+  background-color: var(--btn-select-bg-color);
+  box-shadow: 0px 0px 10px var(--btn-select-box-shadow-color);;
+  animation: vibrate-select 0.5s infinite;
+}
+
+.btn-select-config:hover {
+  background-color: var(--btn-select-hover-color);
+}
+
+@keyframes vibrate-select {
+  0% { transform: translate(0px, -1px); }
+  25% { transform: translate(0px, 0px); }
+  50% { transform: translate(0px, 1px); }
+  75% { transform: translate(0px, 0px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* ------------------ btn-back ------------------ */
+
+.btn-back-config {
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 0px 0px 0px 0px;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 0;
+  border-radius: 4px;
+  color: var(--btn-back-text-color);
+  background-color: var(--btn-back-bg-color);
+  box-shadow: 0px 0px 10px var(--btn-back-box-shadow-color);
+  animation: vibrate-back 0.5s infinite;
+}
+
+.btn-back-config:hover {
+  background-color: var(--btn-back-hover-color);
+}
+
+@keyframes vibrate-back {
+  0% { transform: translate(0px, -1px); }
+  25% { transform: translate(0px, 0px); }
+  50% { transform: translate(0px, 1px); }
+  75% { transform: translate(0px, 0px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* ------------------ btn-cancel ------------------ */
+
+.btn-cancel-config {
+  display: inline-block;
+  padding: 6px 10px;
+  margin: 0px 3px;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 0;
+  border-radius: 4px;
+  color: var(--btn-cancel-text-color);
+  background-color: var(--btn-cancel-bg-color);
+}
+
+.btn-cancel-config:hover, .btn-cancel-config.confirm {
+  background-color: var(--btn-cancel-hover-color);
+}
+
+/* ------------------ btn-attend ------------------ */
+
+.btn-correct-config {
+  display: inline-block;
+  padding: 6px 10px;
+  margin: 0px 3px;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 0;
+  border-radius: 4px;
+  color: var(--btn-correct-text-color);
+  background-color: var(--btn-correct-bg-color);
+}
+
+.btn-correct-config:hover, .btn-correct-config.confirm {
+  background-color: var(--btn-correct-hover-color);
+}
+
+/* ------------------ btn-download ------------------ */
+
+.btn-download-config {
+  display: inline-block;
+  padding: 6px 10px;
+  margin: 0px 3px;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 0;
+  border-radius: 4px;
+  color: var(--btn-download-text-color);
+  background-color: var(--btn-download-bg-color);
+}
+
+.btn-download-config:hover {
+  background-color: var(--btn-download-hover-color);
+}
+
+/* ------------------ btn-preview ------------------ */
+
+.btn-preview-config {
+  display: inline-block;
+  padding: 6px 10px;
+  margin: 0px 3px;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 0;
+  border-radius: 4px;
+  color: var(--btn-preview-text-color);
+  background-color: var(--btn-preview-bg-color);
+}
+
+.btn-preview-config:hover {
+  background-color: var(--btn-preview-hover-color);
+}
+
+/* ------------------ btn-return ------------------ */
+
+.btn-return-config {
+  display: inline-block;
+  padding: 10px 10px;
+  font-size: 14px;
+  font-weight: 900;
+  text-align: center;
+  min-width: 100%;
+  min-height: 100%;
+  cursor: pointer;
+  border: 0;
+  border-radius: 4px;
+  color: var(--btn-return-text-color);
+  background-color: var(--btn-return-bg-color);
+}
+
+.btn-return-config:hover {
+  background-color: var(--btn-return-hover-color);
+}
+
+/* ------------------ btn-save ------------------ */
+
+.btn-save-config {
+  display: inline-block;
+  padding: 10px 10px;
+  font-size: 14px;
+  font-weight: 900;
+  text-align: center;
+  min-width: 100%;
+  min-height: 100%;
+  cursor: pointer;
+  border: 0;
+  border-radius: 4px;
+  color: var(--btn-save-text-color);
+  background-color: var(--btn-save-bg-color);
+}
+
+.btn-save-config:hover {
+  background-color: var(--btn-save-hover-color);
+}
+
+/* ------------------ btn-delete ------------------ */
+
+.btn-delete-config {
+  display: inline-block;
+  padding: 10px 10px;
+  font-size: 14px;
+  font-weight: 900;
+  text-align: center;
+  min-width: 100%;
+  min-height: 100%;
+  cursor: pointer;
+  border: 0;
+  border-radius: 4px;
+  color: var(--btn-delete-text-color);
+  background-color: var(--btn-delete-bg-color);
+}
+
+.btn-delete-config:hover {
+  background-color: var(--btn-delete-hover-color);
+}
+
+/* ------------------ table ------------------ */
+
+.table-config {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table-config th,.table-config td {
+  border: 1px solid var(--table-border-color);
+  padding: 8px;
+}
+
+.table-config tbody {
+  background-color: var(--table-bg-body-color);
+  color: var(--table-text-body-color);
+}
+
+.table-config tr:hover {
+  background-color: var(--table-border-color);
+}
+
+.table-config th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: var(--table-bg-head-color);
+  color: var(--table-text-head-color);
+}
+
+/* ------------------ table-form ------------------ */
+
+.table-form-container {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table-form-config {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table-form-config th,.table-form-config td {
+  vertical-align: middle;
+  padding: 8px;
+}
+
+.table-form-config tr:nth-child(even) {
+  background-color: var(--table-form-nth-even);
+}
+
+.table-form-config tr:nth-child(odd) {
+  background-color: var(--table-form-nth-old);
+}
+
+.table-form-config tbody {
+  background-color: var(--table-form-bg-body-color);
+  color: var(--table-form-text-body-color);
+}
+
+.table-form-config th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  font-weight: bold;
+  border-bottom: 3px solid var(--table-form-border-color);
+  background-color: var(--table-form-bg-head-color);
+  color: var(--table-form-text-head-color);
+}
+
+/* ------------------ card ------------------ */
+
+.card.config {
+  border: 0px;
+}
+
+.card.config .card-header {
+  background-color: var(--card-head-bg-color);
+  color: var(--card-head-text-color);
+  font-family: 'PT Serif', serif;
+}
+
+.card.config .card-body {
+  background-color: var(--card-body-bg-color);
+  color: var(--card-body-text-color);
+}
+
+.card.config .card-footer {
+  background-color: var(--card-footer-bg-color);
+  color: var(--card-footer-text-color);
+}
+
+/* ------------------ ngx-pagination ------------------ */
+
+.ngx-pagination {
+  color: var(--ngx-pagination-text-color);
+  padding-left: 0px;
+}
+
+li.pagination-previous {
+  padding-left: 0px !important;
+}
+
+li.pagination-previous a {
+  padding-left: 0px !important;
+}
+
+li.pagination-next {
+  padding-right: 0px !important;
+}
+
+li.pagination-next a {
+  padding-right: 0px !important;
+}
+
+.ngx-pagination-container {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.ngx-pagination li a:hover {
+  background-color: var(--ngx-pagination-hover-color) !important;
+}
+
+.ngx-pagination .current {
+  background-color: var(--ngx-pagination-current-color) !important;
+  border: transparent !important;
+  border-radius: 4px !important;
+}
+
+.ngx-pagination .current:hover {
+  background-color: var(--ngx-pagination-current-color) !important;
+  border-radius: 4px !important;
+  border: transparent !important;
+}
+
+/* ------------------ alert-danger ------------------ */
+
+.alert-danger-config {
+  background-color: var(--alert-danger-bg-color);
+  color: var(--alert-danger-text-color);
+}
+
+/* ------------------ circle-image ------------------ */
+
+.circle-image {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.circle-image.floating, .floating-only{
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.circle-image.floating-min, .floating-only-min{
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.circle-image-container {
+  max-width: 66px;
+}
+
+/* ------------------ container-horizontal-buttons ------------------ */
+
+.container-horizontal-buttons {
+  min-width: 125px;
+}
+
+/* ------------------ iconify ------------------ */
+
+.iconify {
+  font-size: 18px;
+  padding-bottom: 2px;
+}
+
+/* ------------------ custom-loading ------------------ */
+
+.custom-loader{
+  width: 10.25em;
+  height: 10.25em;
+  border-width: 15px;
+}
+
+.custom-popup {
+  background-color: transparent !important;
+}
+
+
+/* ------------------ text-general ------------------ */
+
+.text-title-general{
+  font-family: 'Rowdies', cursive;
+  font-size: 18px;
+}
+
+.text-first-general{
+  font-family: 'Patua One', cursive;
+  font-size: 16px;
+}
+
+.text-second-general{
+  font-size: 14px;
+}
+
+.text-util-general{
+  font-family: 'Libre Baskerville', serif;
+  font-size: 14px;
+}
+
+.text-subtitle-general{
+  font-size: 16px;
+  font-family: 'Concert One', cursive;
+}
+
+/* ------------------ general ------------------ */
+
+a {
+  cursor: pointer;
+}
+
+.modal{
+  background-color: #0000006f;
+}
+
+.modal-backdrop {
+  opacity: 0 !important;
+}
+

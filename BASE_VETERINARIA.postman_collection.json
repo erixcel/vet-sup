@@ -1,0 +1,4509 @@
+{
+	"info": {
+		"_postman_id": "4d8bad5a-7f8a-43f8-8139-7969090d2d2a",
+		"name": "BASE_VETERINARIA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24239254"
+	},
+	"item": [
+		{
+			"name": "clientes local",
+			"item": [
+				{
+					"name": "findAllClientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/clientes",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllClientesCustom",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "jhoselin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/clientes/custom",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"clientes",
+								"custom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllClientesMapper",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "jhoselin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/clientes/mapper",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"clientes",
+								"mapper"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByIdCliente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/clientes/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"clientes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insertCliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Paula\",\r\n    \"apellidos\": \"Rojas\",\r\n    \"genero\": \"Femenino\",\r\n    \"celular\": 1234567890,\r\n    \"direccion\": \"Calle Falsa 123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/clientes",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCliente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fecha_creacion\": \"2023-05-27\",\r\n    \"nombre\": \"Carlos\",\r\n    \"apellidos\": \"Pérez\",\r\n    \"genero\": \"Masculino\",\r\n    \"celular\": 1234567890,\r\n    \"direccion\": \"Calle Falsa 123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/clientes/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"clientes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteCliente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/clientes/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"clientes",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "setFotoCliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/D:/EXTRAS/ICONOS_ANDROID/img_perfil/perfil1.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/clientes/setFoto/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"clientes",
+								"setFoto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "banios local",
+			"item": [
+				{
+					"name": "findAllBanios",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJHUk9PTUVSIiwiQUxNQUNFTkVSTyIsIlJFQ0VQQ0lPTklTVEEiLCJWRVRFUklOQVJJTyIsIkFETUlOSVNUUkFET1IiXSwiZXhwIjoxNjg5OTAzNjIwLCJpYXQiOjE2ODk4MTcyMjAsInVzZXJuYW1lIjoiQWRtaW4ifQ._lbUJaR921zR6_CfOimMBHHR5PlYQxh6fsvGhDGPtdI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/banios",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"banios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllBaniosByMascotaId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/banios/mascota_id/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"banios",
+								"mascota_id",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllBaniosCustom",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/banios/custom",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"banios",
+								"custom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllBaniosMapper",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/banios/mapper",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"banios",
+								"mapper"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByIdBanio",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/banios/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"banios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insertBanio",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJBTE1BQ0VORVJPIiwiQURNSU5JU1RSQURPUiIsIlZFVEVSSU5BUklPIiwiR1JPT01FUiIsIlJFQ0VQQ0lPTklTVEEiXSwiZXhwIjoxNjkwODA4OTY0LCJpYXQiOjE2OTA3MjI1NjQsInVzZXJuYW1lIjoiQWRtaW4ifQ.nwJcSkIShKO37ff6R-7-sJxRKB3msIpYE8nohUYOx5w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tipo\": \"Medicado\",\r\n    \"precio\": 35,\r\n    \"detalles\": \"Baño con shampoo aloe vera\",\r\n    \"mascota\":{\r\n        \"id\":1\r\n    }\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/banios",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"banios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateBanio",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tipo\": \"Normal\",\r\n    \"precio\": 30,\r\n    \"detalles\": \"Baño con shampoo antipulgas\",\r\n    \"cita\":{\r\n        \"id\":1\r\n    },\r\n    \"mascota\":{\r\n        \"id\":1\r\n    }\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/banios/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"banios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteBanio",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/banios/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"banios",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "setFotoBanioEntrada",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/D:/EXTRAS/ICONOS_ANDROID/banios/antes-1.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/banios/setFotoEntrada/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"banios",
+								"setFotoEntrada",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "setFotoBanioSalida",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/D:/EXTRAS/ICONOS_ANDROID/banios/despues-1.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/banios/setFotoSalida/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"banios",
+								"setFotoSalida",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "productos local",
+			"item": [
+				{
+					"name": "findAllProductos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJjb3JyZW8iOiJsZ2R1cmFkZ0BnbWFpbC5jb20iLCJyb2xlcyI6WyJBRE1JTiJdLCJpYXQiOjE3MDAwMjIwNTksImV4cCI6MTcwMDEwODQ1OX0.voWrszHBLYq8SV5iKz9mh6U-XWE9hb8KMPdO7s-zV8Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/productos",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllProductosCustom",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/productos/custom",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"productos",
+								"custom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllProductosMapper",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/productos/mapper",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"productos",
+								"mapper"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByIdProducto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJSRUNFUENJT05JU1RBIiwiR1JPT01FUiIsIkFETUlOSVNUUkFET1IiLCJBTE1BQ0VORVJPIiwiVkVURVJJTkFSSU8iXSwiZXhwIjoxNjg5MTA1OTQ2LCJpYXQiOjE2ODkwMTk1NDYsInVzZXJuYW1lIjoiQWRtaW4ifQ.-qohAJUtdq5gZxqzhIA87aNZ89VZ7cBafgJT2RJehh0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/productos/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"productos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insertProducto",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Guitarra\",\r\n    \"marca\": \"Lirios\",\r\n    \"descripcion\": \"Acustica\",\r\n    \"precio_venta\": 8.0,\r\n    \"precio_compra\": 7.0,\r\n    \"stock\": 100,\r\n    \"eliminado\": false,\r\n    \"categoria\":{\r\n        \"id\":1\r\n    },\r\n    \"proveedores\":[\r\n        {\r\n            \"id\":1\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/productos",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateProducto",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Guitarra\",\r\n    \"marca\": \"Lirios\",\r\n    \"descripcion\": \"Acustica\",\r\n    \"precio\": 10.0,\r\n    \"stock\": 100,\r\n    \"eliminado\": false,\r\n    \"categoria\":{\r\n        \"id\":1\r\n    },\r\n    \"proveedores\":[\r\n        {\r\n            \"id\":1\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/productos/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"productos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteProducto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/productos/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"productos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "setFotoProducto",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/D:/EXTRAS/ICONOS_ANDROID/img_perfil/perfil3.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/productos/setFoto/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"productos",
+								"setFoto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "mascotas local",
+			"item": [
+				{
+					"name": "findAllMascotas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/mascotas",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"mascotas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllMascotasByClienteId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/mascotas/cliente_id/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"mascotas",
+								"cliente_id",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllMascotasCustom",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/mascotas/custom",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"mascotas",
+								"custom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllMascotasMapper",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/mascotas/mapper",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"mascotas",
+								"mapper"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByIdMascota",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/mascotas/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"mascotas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insertMascota",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Roñoso2\",\r\n    \"sexo\": \"Macho\",\r\n    \"anios\": 3,\r\n    \"meses\": 6,\r\n    \"peso\": 10.5,\r\n    \"descripcion\": \"gato de color naranja super cariñoso2\",\r\n    \"raza\": {\r\n        \"id\":8\r\n    },\r\n    \"cliente\": {\r\n        \"id\":1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/mascotas",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"mascotas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateMascota",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Roñoso\",\r\n    \"sexo\": \"Macho\",\r\n    \"anios\": 3,\r\n    \"meses\": 6,\r\n    \"peso\": 10.5,\r\n    \"descripcion\": \"gato de color naranja super cariñoso\",\r\n    \"raza\": {\r\n        \"id\":8\r\n    },\r\n    \"cliente\": {\r\n        \"id\":1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/mascotas/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"mascotas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteMascota",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/mascotas/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"mascotas",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "setFotoMascota",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/D:/EXTRAS/ICONOS_ANDROID/perros/perro-4.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/mascotas/setFoto/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"mascotas",
+								"setFoto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "razas local",
+			"item": [
+				{
+					"name": "findAllRazas",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/razas",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"razas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllRazasMapper",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/razas/mapper",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"razas",
+								"mapper"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllRazasCustom",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/razas/custom",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"razas",
+								"custom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByIdRaza",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/razas/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"razas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insertRaza",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Desconocida\",\r\n    \"especie\": {\r\n        \"id\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/razas",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"razas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateRaza",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"rustica\",\r\n    \"especie\": {\r\n        \"id\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/razas/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"razas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteRaza",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/razas/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"razas",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tratamientos local",
+			"item": [
+				{
+					"name": "findAllTratamientos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJWRVRFUklOQVJJTyIsIlJFQ0VQQ0lPTklTVEEiLCJBTE1BQ0VORVJPIiwiQURNSU5JU1RSQURPUiIsIkdST09NRVIiXSwiZXhwIjoxNjkwMjI1Mjc1LCJpYXQiOjE2OTAxMzg4NzUsInVzZXJuYW1lIjoiQWRtaW4ifQ.vsrywTzbiX2BnRLU6FrQjiicsKVjHI4LehxY3Xxhkfw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/tratamientos",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"tratamientos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllTratamientosByMascotaId",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/tratamientos/mascota_id/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"tratamientos",
+								"mascota_id",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllTratamientosMapper",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/tratamientos/mapper",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"tratamientos",
+								"mapper"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllTratamientosCustom",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/tratamientos/custom",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"tratamientos",
+								"custom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByIdTratamiento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/tratamientos/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"tratamientos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insertTratamiento",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tipo\":\"vacuna\",\r\n    \"precio\":10,\r\n    \"descripcion\":\"Meloxixam 10mg\",\r\n    \"mascota\":{\r\n        \"id\":1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/tratamientos",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"tratamientos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateTratamiento",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "Jackelin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tipo\":\"ampollas2\",\r\n    \"precio\":10,\r\n    \"descripcion\":\"Meloxixam 10mg\",\r\n    \"mascota\":{\r\n        \"id\":1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/tratamientos/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"tratamientos",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteTratamiento",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/tratamientos/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"tratamientos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "citas local",
+			"item": [
+				{
+					"name": "findAllCitas",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJHUk9PTUVSIiwiQUxNQUNFTkVSTyIsIlJFQ0VQQ0lPTklTVEEiLCJWRVRFUklOQVJJTyIsIkFETUlOSVNUUkFET1IiXSwiZXhwIjoxNjg5OTAzNjIwLCJpYXQiOjE2ODk4MTcyMjAsInVzZXJuYW1lIjoiQWRtaW4ifQ._lbUJaR921zR6_CfOimMBHHR5PlYQxh6fsvGhDGPtdI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/citas",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"citas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllCitasCustom",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/citas/custom",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"citas",
+								"custom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllCitasMapper",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJHUk9PTUVSIiwiQUxNQUNFTkVSTyIsIlJFQ0VQQ0lPTklTVEEiLCJWRVRFUklOQVJJTyIsIkFETUlOSVNUUkFET1IiXSwiZXhwIjoxNjg5OTAzNjIwLCJpYXQiOjE2ODk4MTcyMjAsInVzZXJuYW1lIjoiQWRtaW4ifQ._lbUJaR921zR6_CfOimMBHHR5PlYQxh6fsvGhDGPtdI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/citas/mapper",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"citas",
+								"mapper"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllCitasByMascotaId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJSRUNFUENJT05JU1RBIiwiQURNSU5JU1RSQURPUiIsIkFMTUFDRU5FUk8iLCJWRVRFUklOQVJJTyIsIkdST09NRVIiXSwiZXhwIjoxNjkwMDAwNTI0LCJpYXQiOjE2ODk5MTQxMjQsInVzZXJuYW1lIjoiQWRtaW4ifQ.JeVweou24Z22ppqEqiL42VSfk1Kdeqr3GlOaTuJ1lmA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/citas/mascota_id/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"citas",
+								"mascota_id",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllCitasByEstado",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJBRE1JTklTVFJBRE9SIiwiVkVURVJJTkFSSU8iLCJSRUNFUENJT05JU1RBIiwiR1JPT01FUiIsIkFMTUFDRU5FUk8iXSwiZXhwIjoxNjkwMjkzNzI3LCJpYXQiOjE2OTAyMDczMjcsInVzZXJuYW1lIjoiQWRtaW4ifQ.Mf7ByLURrRbswkefIdyitMCSayac1_KT7ykTX3P1J6w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/citas/estado/atendida",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"citas",
+								"estado",
+								"atendida"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByIdCita",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/citas/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"citas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insertCita",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fecha_programada\": \"2023-07-20T14:30:00\",\r\n    \"motivo\": \"Vacunacion\",\r\n    \"hechos\": \"Es docil\",\r\n    \"mascota\": {\r\n        \"id\":2\r\n    } \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/citas",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"citas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCita",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJHUk9PTUVSIiwiQUxNQUNFTkVSTyIsIlJFQ0VQQ0lPTklTVEEiLCJWRVRFUklOQVJJTyIsIkFETUlOSVNUUkFET1IiXSwiZXhwIjoxNjg5OTAzNjIwLCJpYXQiOjE2ODk4MTcyMjAsInVzZXJuYW1lIjoiQWRtaW4ifQ._lbUJaR921zR6_CfOimMBHHR5PlYQxh6fsvGhDGPtdI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fecha_programada\": \"2023-06-20T14:30:00\",\r\n    \"fecha_atendida\": \"2023-06-21T14:30:00\",\r\n    \"estado\":\"atendida\",\r\n    \"motivo\": \"Vacunación\",\r\n    \"hechos\": \"Perro mediano y peludo\",\r\n    \"mascota\": {\r\n        \"id\":1\r\n    } \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/citas/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"citas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteCita",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/citas/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"citas",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cancelarCita",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJHUk9PTUVSIiwiQUxNQUNFTkVSTyIsIlJFQ0VQQ0lPTklTVEEiLCJWRVRFUklOQVJJTyIsIkFETUlOSVNUUkFET1IiXSwiZXhwIjoxNjg5OTAzNjIwLCJpYXQiOjE2ODk4MTcyMjAsInVzZXJuYW1lIjoiQWRtaW4ifQ._lbUJaR921zR6_CfOimMBHHR5PlYQxh6fsvGhDGPtdI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "Cancelada porque murio la mascota",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/citas/cancelar/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"citas",
+								"cancelar",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "especies local",
+			"item": [
+				{
+					"name": "findAllEspecies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/especies",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"especies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllEspeciesCustom",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/especies/custom",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"especies",
+								"custom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllEspeciesMapper",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/especies/mapper",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"especies",
+								"mapper"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByIdEspecie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/especies/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"especies",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insertEspecie",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Perro\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/especies",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"especies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateEspecie",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Gallo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/especies/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"especies",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteEspecie",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/especies/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"especies",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "usuario local",
+			"item": [
+				{
+					"name": "findAllUsuarios",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/usuarios",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllUsuariosCustom",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/usuarios/custom",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"usuarios",
+								"custom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllUsuariosMapper",
+					"request": {
+						"auth": {
+							"type": "digest",
+							"digest": [
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "algorithm",
+									"value": "MD5",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/usuarios/mapper",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"usuarios",
+								"mapper"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByIdUsuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/usuarios/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"usuarios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insertUsuario",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"recepcionista1\",\r\n    \"correo\": \"recepcionista1@gmail.com\",\r\n    \"password\": \"123456\",\r\n    \"roles\": [\r\n        {\r\n            \"id\":1\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/usuarios",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUsuario",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"recepcionista2\",\r\n    \"correo\": \"recepcionista2@gmail.com\",\r\n    \"password\": \"123456\",\r\n    \"roles\": [\r\n        {\r\n            \"id\":1\r\n        },\r\n        {\r\n            \"id\":2\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/usuarios/7",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"usuarios",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUsuario",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/usuarios/7",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"usuarios",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "rol local",
+			"item": [
+				{
+					"name": "findAllRol",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/roles",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllRolesCustom",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/roles/custom",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"roles",
+								"custom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllRolesMapper",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/roles/mapper",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"roles",
+								"mapper"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByIdRol",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/roles/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"roles",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insertRol",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"rol3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/roles",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateRol",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"REP\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/roles/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"roles",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteRol",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/roles/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"roles",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "proveedor local",
+			"item": [
+				{
+					"name": "findAllProveedor",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/proveedores",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"proveedores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllProveedoresCustom",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/proveedores/custom",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"proveedores",
+								"custom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllProveedoresMapper",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/proveedores/mapper",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"proveedores",
+								"mapper"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByIdProveedores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/proveedores/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"proveedores",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findProductosByIdProveedor",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/proveedores/productos/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"proveedores",
+								"productos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insertProveedor",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Don currulo\",\r\n    \"correo\":\"xerick@gmail.com\",\r\n    \"celular\":999999758\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/proveedores",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"proveedores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateProveedor",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Don venigno\",\r\n    \"correo\":\"xerick@gmail.com\",\r\n    \"celular\":999999758\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/proveedores/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"proveedores",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteProveedor",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/proveedores/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"proveedores",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "setFotoCliente",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/D:/EXTRAS/ICONOS_ANDROID/img_perfil/perfil1.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/proveedores/setFoto/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"proveedores",
+								"setFoto",
+								"1"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "boletaProducto local",
+			"item": [
+				{
+					"name": "findAllBoletaProducto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/boleta-producto",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"boleta-producto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllBoletaProductoCustom",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/boleta-producto/custom",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"boleta-producto",
+								"custom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllBoletaProductoMapper",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/boleta-producto/mapper",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"boleta-producto",
+								"mapper"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByBoletaProducto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/boleta-producto/1/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"boleta-producto",
+								"1",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insertBoletaProducto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"boleta\": {\r\n        \"id\":1\r\n    },\r\n    \"producto\": {\r\n        \"id\":3\r\n    },\r\n    \"precio\": 10.0,\r\n    \"cantidad\": 2,\r\n    \"total\": 20.0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/boleta-producto",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"boleta-producto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateBoletaProducto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"precio\": 100.0,\r\n    \"cantidad\": 2,\r\n    \"total\": 210.0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/boleta-producto/1/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"boleta-producto",
+								"1",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteBoletaProducto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/boleta-producto/1/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"boleta-producto",
+								"1",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "pedidoProducto local",
+			"item": [
+				{
+					"name": "findAllPedidoProducto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/pedido-producto",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"pedido-producto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllPedidoProductoCustom",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/pedido-producto/custom",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"pedido-producto",
+								"custom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllPedidoProductoMapper",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/pedido-producto/mapper",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"pedido-producto",
+								"mapper"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByPedidoProducto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/pedido-producto/1/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"pedido-producto",
+								"1",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insertPedidoProducto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pedido\": {\r\n        \"id\":1\r\n    },\r\n    \"producto\": {\r\n        \"id\":3\r\n    },\r\n    \"precio_compra\": 10.0,\r\n    \"cantidad\": 2,\r\n    \"importe\": 20.0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/pedido-producto",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"pedido-producto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatePedidoProducto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"precio_compra\": 100.0,\r\n    \"cantidad\": 2,\r\n    \"importe\": 210.0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/pedido-producto/1/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"pedido-producto",
+								"1",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletePedidoProducto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/pedido-producto/1/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"pedido-producto",
+								"1",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "categorias local",
+			"item": [
+				{
+					"name": "findAllCategorias",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/categorias",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"categorias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllCategoriasCustom",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/categorias/custom",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"categorias",
+								"custom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllCategoriasMapper",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/categorias/mapper",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"categorias",
+								"mapper"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByIdCategoria",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/categorias/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"categorias",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insertCategoria",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Utencilios\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/categorias",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"categorias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCategoria",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Juguetes\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/categorias/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"categorias",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteCategoria",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/categorias/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"categorias",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "boletas local",
+			"item": [
+				{
+					"name": "findAllBoletas",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/boletas",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"boletas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllBoletasMapper",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/boletas/mapper",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"boletas",
+								"mapper"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllBoletasCustom",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/boletas/custom",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"boletas",
+								"custom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByIdBoleta",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJWRVRFUklOQVJJTyIsIlJFQ0VQQ0lPTklTVEEiLCJBRE1JTklTVFJBRE9SIiwiQUxNQUNFTkVSTyIsIkdST09NRVIiXSwiZXhwIjoxNjg5NjM4NjkyLCJpYXQiOjE2ODk1NTIyOTIsInVzZXJuYW1lIjoiQWRtaW4ifQ.Om5didqF6w3SyIlDQ6BcWMg93WajMo5kPseUvpluoW0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/boletas/7",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"boletas",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findNewIdBoleta",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/boletas/new",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"boletas",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "descargarBoleta",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/boletas/descargar/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"boletas",
+								"descargar",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "previsualizarBoleta",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/boletas/previsualizar/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"boletas",
+								"previsualizar",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insertBoleta",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJWRVRFUklOQVJJTyIsIkFETUlOSVNUUkFET1IiLCJHUk9PTUVSIiwiQUxNQUNFTkVSTyIsIlJFQ0VQQ0lPTklTVEEiXSwiZXhwIjoxNjkxNzk0NzI5LCJpYXQiOjE2OTE3MDgzMjksInVzZXJuYW1lIjoiQWRtaW4ifQ.kJJ9ILHuYkF2easkwV01fgoyXRDdCg97cRG5TRgkJ8M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cliente\": {\r\n        \"id\": 1\r\n    },\r\n    \"tipo_pago\": \"efectivo\",\r\n    \"vuelto\": 100,\r\n    \"detalle_producto\": [\r\n        {\r\n            \"producto\": {\r\n                \"id\": 1\r\n            },\r\n            \"cantidad\":8\r\n        },\r\n        {\r\n            \"producto\": {\r\n                \"id\": 2\r\n            },\r\n            \"cantidad\":5\r\n        }\r\n    ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/boletas",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"boletas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateBoleta",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJWRVRFUklOQVJJTyIsIkFETUlOSVNUUkFET1IiLCJHUk9PTUVSIiwiQUxNQUNFTkVSTyIsIlJFQ0VQQ0lPTklTVEEiXSwiZXhwIjoxNjkxNzk0NzI5LCJpYXQiOjE2OTE3MDgzMjksInVzZXJuYW1lIjoiQWRtaW4ifQ.kJJ9ILHuYkF2easkwV01fgoyXRDdCg97cRG5TRgkJ8M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cliente\": {\r\n        \"id\": 1\r\n    },\r\n    \"tipo_pago\": \"efectivo\",\r\n    \"vuelto\": 100,\r\n    \"detalle_producto\": [\r\n        {\r\n            \"producto\": {\r\n                \"id\": 1\r\n            },\r\n            \"cantidad\":8\r\n        },\r\n        {\r\n            \"producto\": {\r\n                \"id\": 2\r\n            },\r\n            \"cantidad\":6\r\n        }\r\n    ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/boletas/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"boletas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "anularBoleta",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJWRVRFUklOQVJJTyIsIlJFQ0VQQ0lPTklTVEEiLCJHUk9PTUVSIiwiQURNSU5JU1RSQURPUiIsIkFMTUFDRU5FUk8iXSwiZXhwIjoxNjg5Nzg3NDE1LCJpYXQiOjE2ODk3MDEwMTUsInVzZXJuYW1lIjoiQWRtaW4ifQ.Zd82noNwt3eTBbPR9IZO2FpCLjLdz4v99ZyM_VfDHFg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "boleta anulada por equivocacion",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/boletas/anular/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"boletas",
+								"anular",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteBoleta",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJWRVRFUklOQVJJTyIsIlJFQ0VQQ0lPTklTVEEiLCJHUk9PTUVSIiwiQURNSU5JU1RSQURPUiIsIkFMTUFDRU5FUk8iXSwiZXhwIjoxNjg5Nzg3NDE1LCJpYXQiOjE2ODk3MDEwMTUsInVzZXJuYW1lIjoiQWRtaW4ifQ.Zd82noNwt3eTBbPR9IZO2FpCLjLdz4v99ZyM_VfDHFg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/boletas/11",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"boletas",
+								"11"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "pedido local",
+			"item": [
+				{
+					"name": "findAllPedidos",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/pedidos",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllPedidosMapper",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJSRUNFUENJT05JU1RBIiwiVkVURVJJTkFSSU8iLCJHUk9PTUVSIiwiQUxNQUNFTkVSTyIsIkFETUlOSVNUUkFET1IiXSwiZXhwIjoxNjkwODExNDY3LCJpYXQiOjE2OTA3MjUwNjcsInVzZXJuYW1lIjoiQWRtaW4ifQ.Lp1BlnG7nfa8tZK_qjyQtV5Kuy4pgZ96hkrztLaIHU8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/pedidos/mapper",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"pedidos",
+								"mapper"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllPedidosCustom",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/pedidos/custom",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"pedidos",
+								"custom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByIdPedido",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJWRVRFUklOQVJJTyIsIlJFQ0VQQ0lPTklTVEEiLCJBRE1JTklTVFJBRE9SIiwiQUxNQUNFTkVSTyIsIkdST09NRVIiXSwiZXhwIjoxNjg5NjM4NjkyLCJpYXQiOjE2ODk1NTIyOTIsInVzZXJuYW1lIjoiQWRtaW4ifQ.Om5didqF6w3SyIlDQ6BcWMg93WajMo5kPseUvpluoW0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/pedidos/7",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"pedidos",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findNewIdPedido",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJWRVRFUklOQVJJTyIsIlJFQ0VQQ0lPTklTVEEiLCJBRE1JTklTVFJBRE9SIiwiQUxNQUNFTkVSTyIsIkdST09NRVIiXSwiZXhwIjoxNjg5NjM4NjkyLCJpYXQiOjE2ODk1NTIyOTIsInVzZXJuYW1lIjoiQWRtaW4ifQ.Om5didqF6w3SyIlDQ6BcWMg93WajMo5kPseUvpluoW0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/pedidos/new",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"pedidos",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "descargarPedido",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/pedidos/descargar/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"pedidos",
+								"descargar",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "previsualizarPedido",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/pedidos/previsualizar/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"pedidos",
+								"previsualizar",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insertPedido",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJBRE1JTklTVFJBRE9SIiwiVkVURVJJTkFSSU8iLCJHUk9PTUVSIiwiUkVDRVBDSU9OSVNUQSIsIkFMTUFDRU5FUk8iXSwiZXhwIjoxNjkxODc3ODczLCJpYXQiOjE2OTE3OTE0NzMsInVzZXJuYW1lIjoiQWRtaW4ifQ.Je_d1EZpVBYyjf5zFZilA1Zlas1L9jwb2vn9rdPteQ4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"proveedor\": {\r\n        \"id\": 1\r\n    },\r\n    \"tipo_pago\": \"efectivo\",\r\n    \"detalle_producto\": [\r\n        {\r\n            \"producto\": {\r\n                \"id\": 1\r\n            },\r\n            \"cantidad\":8\r\n        },\r\n        {\r\n            \"producto\": {\r\n                \"id\": 2\r\n            },\r\n            \"cantidad\":5\r\n        }\r\n    ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/pedidos",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatePedido",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJWRVRFUklOQVJJTyIsIkFETUlOSVNUUkFET1IiLCJHUk9PTUVSIiwiQUxNQUNFTkVSTyIsIlJFQ0VQQ0lPTklTVEEiXSwiZXhwIjoxNjkxNzk0NzI5LCJpYXQiOjE2OTE3MDgzMjksInVzZXJuYW1lIjoiQWRtaW4ifQ.kJJ9ILHuYkF2easkwV01fgoyXRDdCg97cRG5TRgkJ8M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"proveedor\": {\r\n        \"id\": 1\r\n    },\r\n    \"tipo_pago\": \"yape\",\r\n    \"detalle_producto\": [\r\n        {\r\n            \"producto\": {\r\n                \"id\": 4\r\n            },\r\n            \"cantidad\":5\r\n        },\r\n        {\r\n            \"producto\": {\r\n                \"id\": 2\r\n            },\r\n            \"cantidad\":3\r\n        }\r\n    ]\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/pedidos/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"pedidos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "anularPedido",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJWRVRFUklOQVJJTyIsIlJFQ0VQQ0lPTklTVEEiLCJHUk9PTUVSIiwiQURNSU5JU1RSQURPUiIsIkFMTUFDRU5FUk8iXSwiZXhwIjoxNjg5Nzg3NDE1LCJpYXQiOjE2ODk3MDEwMTUsInVzZXJuYW1lIjoiQWRtaW4ifQ.Zd82noNwt3eTBbPR9IZO2FpCLjLdz4v99ZyM_VfDHFg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "orden anulada por equivocacion",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/pedidos/anular/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"pedidos",
+								"anular",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recibirPedido",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJWRVRFUklOQVJJTyIsIlJFQ0VQQ0lPTklTVEEiLCJHUk9PTUVSIiwiQURNSU5JU1RSQURPUiIsIkFMTUFDRU5FUk8iXSwiZXhwIjoxNjg5Nzg3NDE1LCJpYXQiOjE2ODk3MDEwMTUsInVzZXJuYW1lIjoiQWRtaW4ifQ.Zd82noNwt3eTBbPR9IZO2FpCLjLdz4v99ZyM_VfDHFg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/pedidos/recibir/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"pedidos",
+								"recibir",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletePedido",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJWRVRFUklOQVJJTyIsIlJFQ0VQQ0lPTklTVEEiLCJHUk9PTUVSIiwiQURNSU5JU1RSQURPUiIsIkFMTUFDRU5FUk8iXSwiZXhwIjoxNjg5Nzg3NDE1LCJpYXQiOjE2ODk3MDEwMTUsInVzZXJuYW1lIjoiQWRtaW4ifQ.Zd82noNwt3eTBbPR9IZO2FpCLjLdz4v99ZyM_VfDHFg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/pedidos/11",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"pedidos",
+								"11"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "panel local",
+			"item": [
+				{
+					"name": "total tratamientos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/panel/tratamientos",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"panel",
+								"tratamientos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "total clientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/panel/clientes",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"panel",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "total mascotas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/panel/mascotas",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"panel",
+								"mascotas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "total banios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/panel/banios",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"panel",
+								"banios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "total citas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/panel/citas",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"panel",
+								"citas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "total boletas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/panel/boletas",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"panel",
+								"boletas"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth local",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJWRVRFUklOQVJJTyJdLCJleHAiOjE2OTA4MTIxNTEsImlhdCI6MTY5MDcyNTc1MSwidXNlcm5hbWUiOiJKYWNrZWxpbiJ9.zeBCO0WhRvOi4N2DVIoffmIKhSLqPa1xjXKnqMFBeKg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"jackelin\", \r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/veterinaria/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJWRVRFUklOQVJJTyIsIkdST09NRVIiLCJBTE1BQ0VORVJPIiwiUkVDRVBDSU9OSVNUQSIsIkFETUlOSVNUUkFET1IiXSwiZXhwIjoxNjkyMjIxMDM3LCJpYXQiOjE2OTIyMjEwMjcsInVzZXJuYW1lIjoiQWRtaW4ifQ.GSYreFHXqFkMu3JIu4_xl2SrpVinXJhKjfpRXGX3Qg8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/verify",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"verify"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Usuario",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJBTE1BQ0VORVJPIiwiR1JPT01FUiIsIlJFQ0VQQ0lPTklTVEEiLCJBRE1JTklTVFJBRE9SIiwiVkVURVJJTkFSSU8iXSwiZXhwIjoxNjg5ODYyODQyLCJpYXQiOjE2ODk3NzY0NDIsInVzZXJuYW1lIjoiQWRtaW4ifQ.uyw93y40pCyk2LM8bhvnA0dpNSrzfnFkTkGFnRIPXfw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/usuario",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ingresos local",
+			"item": [
+				{
+					"name": "ingresosFecha",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/ingresos/2023-08-01",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"ingresos",
+								"2023-08-01"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sumaIngresosFecha",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/ingresos/suma/2023-08-01",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"ingresos",
+								"suma",
+								"2023-08-01"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "backup local",
+			"item": [
+				{
+					"name": "downloadRespaldo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/veterinaria/backup/download",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"veterinaria",
+								"backup",
+								"download"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

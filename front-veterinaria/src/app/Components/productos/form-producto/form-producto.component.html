@@ -1,0 +1,175 @@
+<form #productoForm="ngForm" (ngSubmit)="save(productoForm,flashProducto)">
+  <section class="mt-3">
+    <div class="container">
+      <div class="row mb-3">
+        <div class="col">
+          <div class="title-form-container">
+            <span><i class="iconify" data-icon="solar:box-bold"></i> {{title}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3" *ngIf="isEditar">
+        <div class="col-md-4 my-1">
+          <button [routerLink]="['/menu/productos']" class="btn-return-config">
+            <i class="iconify" data-icon="ooui:arrow-previous-ltr"></i> Regresar
+          </button>
+        </div>
+        <div class="col-md-4 my-1">
+          <button type="submit" class="btn-save-config">
+            <i class="iconify" data-icon="ion:save-sharp"></i> Guardar Producto
+          </button>
+        </div>
+        <div class="col-md-4 my-1">
+          <button type="button" class="btn-delete-config" (click)="delete()">
+            <i class="iconify" data-icon="icon-park-solid:delete"></i> Eliminar Producto
+          </button>
+        </div>
+      </div>
+      <div class="row mb-3" *ngIf="!isEditar">
+        <div class="col-md-6 my-1">
+          <button [routerLink]="['/menu/productos']" class="btn-return-config">
+            <i class="iconify" data-icon="ooui:arrow-previous-ltr"></i> Regresar
+          </button>
+        </div>
+        <div class="col-md-6 my-1">
+          <button type="submit" class="btn-save-config">
+            <i class="iconify" data-icon="ion:save-sharp"></i> Guardar Producto
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="mb-3">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="card config">
+            <div class="card-header">
+              <h4 class="pt-2">Datos del Producto</h4>
+            </div>
+            <div class="card-body">
+              <flash-messages #flashProducto></flash-messages>
+              <div class="row">
+                <div class="col-sm-6 col-lg-7 col-xl-8 pe-sm-4">
+                  <div class="form-group mb-3">
+                    <label class="mt-1 mb-2" for="nombre">Nombre:</label>
+                    <input class="form-control input-form-config" type="text" name="nombre" #nombre="ngModel" [(ngModel)]="producto.nombre" [ngClass]="{'is-invalid': nombre.errors && (nombre.touched || productoForm.submitted), 'is-valid': ! nombre.errors}" minlength="2" required >
+                    <div [hidden]="!nombre.errors?.['required']" class="invalid-feedback">Nombre requerido</div>
+                    <div [hidden]="!nombre.errors?.['minlength']" class="invalid-feedback">Minimo 2 caracteres</div>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="mt-1 mb-2" for="categoria">Categoria:</label>
+                    <div class="input-group">
+                      <input class="form-control input-form-config is-valid" type="text" name="categoria" #categoria="ngModel" [(ngModel)]="producto.categoria!.nombre" readonly>
+                      <button class="btn btn-primary btn-dropdown-config" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="iconify" data-icon="fe:drop-down"></i>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li *ngFor="let categoria of categorias">
+                          <a (click)="producto.categoria = categoria" class="dropdown-item">{{categoria.nombre}}</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="row row-cols-2">
+                    <div class="col">
+                      <div class="form-group mb-3">
+                        <label class="mt-1 mb-2" for="marca">Marca:</label>
+                        <input class="form-control input-form-config" type="text" name="marca" #marca="ngModel" [(ngModel)]="producto.marca" [ngClass]="{'is-invalid': marca.errors && (marca.touched || productoForm.submitted), 'is-valid': ! marca.errors}" minlength="1" required >
+                        <div [hidden]="!marca.errors?.['required']" class="invalid-feedback">Marca requerida</div>
+                        <div [hidden]="!marca.errors?.['minlength']" class="invalid-feedback">Minimo 1 caracter</div>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group mb-3">
+                        <label class="mt-1 mb-2" for="unidad_medida">Unidad Medida:</label>
+                        <div class="input-group">
+                          <input *ngIf="isNumberUnidadMedida()" class="form-control input-form-config is-valid" type="number" name="numero" #numero="ngModel" [(ngModel)]="cantidad">
+                          <input *ngIf="!isNumberUnidadMedida()" class="form-control input-form-config is-valid" type="search" name="unidad_medida" #unidad_medida="ngModel" [(ngModel)]="producto.unidad_medida" (search)="resetUnidadMedida()">
+                          <button class="btn btn-primary btn-dropdown-config" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="iconify" data-icon="fe:drop-down"></i>
+                          </button>
+                          <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" (click)="setUnidadMedida('Ninguna')">Ninguna</a></li>
+                            <li><a class="dropdown-item" (click)="setUnidadMedida('Gramos')">Gramos</a></li>
+                            <li><a class="dropdown-item" (click)="setUnidadMedida('Kilos')">Kilos</a></li>
+                            <li><a class="dropdown-item" (click)="setUnidadMedida('Militros')">Mililitros</a></li>
+                            <li><a class="dropdown-item" (click)="setUnidadMedida('Litros')">Litros</a></li>
+                          </ul>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="row row-cols-2">
+                    <div class="col">
+                      <div class="form-group mb-3">
+                        <label class="my-1 mb-2" for="precio_venta">Precio Venta:</label>
+                        <input class="form-control input-form-config" type="number" name="precio_venta" #precio_venta="ngModel" [(ngModel)]="producto.precio_venta" [ngClass]="{'is-invalid': precio_venta.errors && (precio_venta.touched || productoForm.submitted), 'is-valid': ! precio_venta.errors }" min="0" required>
+                        <div [hidden]="!precio_venta.errors?.['required']" class="invalid-feedback">Precio de venta requerido</div>
+                        <div [hidden]="!precio_venta.errors?.['min']" class="invalid-feedback">No debe ser inferior a 0</div>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group mb-3">
+                        <label class="my-1 mb-2" for="precio_compra">Precio Compra:</label>
+                        <input class="form-control input-form-config" type="number" name="precio_compra" #precio_compra="ngModel" [(ngModel)]="producto.precio_compra" [ngClass]="{'is-invalid': precio_compra.errors && (precio_compra.touched || productoForm.submitted), 'is-valid': ! precio_compra.errors }" min="0" required>
+                        <div [hidden]="!precio_compra.errors?.['required']" class="invalid-feedback">Precio de Compra requerido</div>
+                        <div [hidden]="!precio_compra.errors?.['min']" class="invalid-feedback">No debe ser inferior a 0</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row row-cols-2">
+                    <div class="col">
+                      <div class="form-group mb-3">
+                        <label class="my-1 mb-2" for="stock">Stock:</label>
+                        <input class="form-control input-form-config" type="number" name="stock" #stock="ngModel" [(ngModel)]="producto.stock" [ngClass]="{'is-invalid': stock.errors && (stock.touched || productoForm.submitted), 'is-valid': ! stock.errors }" min="0" required>
+                        <div [hidden]="!stock.errors?.['required']" class="invalid-feedback">Stock requerido</div>
+                        <div [hidden]="!stock.errors?.['min']" class="invalid-feedback">No debe ser inferior a 0</div>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group mb-3">
+                        <label class="mt-1 mb-2" for="listProveedor">Proveedores:</label>
+                        <div class="input-group">
+                          <button class="btn btn-primary btn-dropdown-config complete w-100 d-flex justify-content-between align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span>{{producto.proveedores!.length}}</span>
+                            <i class="iconify" data-icon="fe:drop-down"></i>
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li *ngFor="let proveedor of proveedores" class="mx-3">
+                              <div class="form-check px-0">
+                                <input class="form-check-input seleccion mx-0" type="checkbox" [checked]="isChecked(proveedor.id!)" (change)="toggleProveedor($event, proveedor.id!)">
+                                <label class="form-check-label text-wrap">{{proveedor.nombre}}</label>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-lg-5 col-xl-4 ps-sm-0 d-flex flex-column">
+                  <div class="border border-dark flex-grow-1 d-flex justify-content-center align-items-center" id="marcoImagen">
+                    <span class="m-auto" [hidden]="this.producto.foto !== ''">Foto</span>
+                    <img class="h-100 w-100" [hidden]="this.producto.foto === ''"  src="{{this.producto.foto}}" id="imgProducto" >
+                  </div>
+                  <label class="btn btn-primary flex-grow-0 text-center my-3" id="labelImagen">
+                    Seleccionar Imagen
+                    <input type="file" id="inputImagen" (change)="onFileSelected($event)" style="display: none;">
+                  </label>
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <label class="mt-1 mb-2" for="descripcion">Descripcion:</label>
+                <textarea class="form-control input-form-config" rows="6" name="descripcion" #descripcion="ngModel" [(ngModel)]="producto.descripcion" [ngClass]="{'is-invalid': descripcion.errors && (descripcion.touched || productoForm.submitted), 'is-valid': ! descripcion.errors}" minlength="5" required></textarea>
+                <div [hidden]="!descripcion.errors?.['required']" class="invalid-feedback">Descripcion requerida</div>
+                <div [hidden]="!descripcion.errors?.['minlength']" class="invalid-feedback">Minimo 5 caracteres</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</form>

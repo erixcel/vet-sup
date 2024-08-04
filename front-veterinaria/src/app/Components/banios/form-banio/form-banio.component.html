@@ -1,0 +1,99 @@
+<form #banioForm="ngForm" (ngSubmit)="save(banioForm,flashTratamiento)">
+  <section class="mt-3">
+    <div class="container">
+      <div class="row mb-3">
+        <div class="col">
+          <div class="title-form-container">
+              <span><i class="iconify" data-icon="fluent:showerhead-24-filled"></i> {{title}}</span>
+              <img class="circle-image floating" id="openFoto" data-bs-toggle="modal" data-bs-target="#fotoModal" src="{{banio.mascota!.foto}}" width="50" height="50" onerror="this.src='../../../assets/imgs/no-img.png'"/>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3" *ngIf="isEditar">
+        <div class="col-md-4 my-1">
+          <button [routerLink]="['/menu/banios']" class="btn-return-config">
+            <i class="iconify" data-icon="ooui:arrow-previous-ltr"></i> Regresar
+          </button>
+        </div>
+        <div class="col-md-4 my-1">
+          <button type="submit" class="btn-save-config">
+            <i class="iconify" data-icon="ion:save-sharp"></i> Guardar Baño
+          </button>
+        </div>
+        <div class="col-md-4 my-1">
+          <button type="button" class="btn-delete-config" (click)="delete()">
+            <i class="iconify" data-icon="icon-park-solid:delete"></i> Eliminar Baño
+          </button>
+        </div>
+      </div>
+      <div class="row mb-3" *ngIf="!isEditar">
+        <div class="col-md-6 my-1">
+          <button [routerLink]="['/menu/banios']" class="btn-return-config">
+            <i class="iconify" data-icon="ooui:arrow-previous-ltr"></i> Regresar
+          </button>
+        </div>
+        <div class="col-md-6 my-1">
+          <button type="submit" class="btn-save-config">
+            <i class="iconify" data-icon="ion:save-sharp"></i> Guardar Baño
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="mb-3">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="card config">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h4 class="pt-2">Datos del Baño</h4>
+              <div class="form-check form-switch">
+                <label class="form-check-label" for="cita">Citado</label>
+                <input class="form-check-input" type="checkbox" id="cita" #cita (change)="onCitaChange($event)" [checked]="isCitado" [disabled]="!isEditar || !hasCitas">
+              </div>
+            </div>
+            <div class="card-body">
+              <flash-messages #flashTratamiento></flash-messages>
+              <div class="form-group mb-3">
+                <label class="mt-1 mb-2" for="mascota">Mascota:</label>
+                <input class="form-control" type="hidden" id="mascotaId" name="mascotaId" #mascotaCodigo="ngModel" [(ngModel)]="banio.mascota!.id" readonly>
+                <div class="input-group">
+                  <input class="form-control input-form-config is-valid" type="text" id="mascota" name="mascota" #mascota="ngModel" [(ngModel)]="banio.mascota!.nombre" readonly>
+                  <button class="btn-search-config" type="button">
+                    <i class="iconify" data-icon="fa-solid:search"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <label class="mt-1 mb-2" for="tipo">Tipo:</label>
+                <div class="input-group">
+                  <input class="form-control input-form-config" type="text" name="tipo" #tipo="ngModel" [(ngModel)]="banio.tipo" [ngClass]="{'is-invalid': tipo.errors && (tipo.touched || banioForm.submitted), 'is-valid': ! tipo.errors}" required >
+                  <button class="btn-dropdown-config" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="iconify" data-icon="fe:drop-down"></i>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-wide">
+                    <li><a class="dropdown-item" (click)="banio.tipo='Baño Medicado'">Baño Medicado</a></li>
+                    <li><a class="dropdown-item" (click)="banio.tipo='Baño Solo'">Baño solo</a></li>
+                    <li><a class="dropdown-item" (click)="banio.tipo='Baño + Corte'">Baño + Corte</a></li>
+                  </ul>
+                  <div [hidden]="!tipo.errors?.['required']" class="invalid-feedback">Tipo Requerido</div>
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <label class="mt-1 mb-2" for="precio">Precio:</label>
+                <input class="form-control input-form-config" type="number" name="precio" #precio="ngModel" [(ngModel)]="banio.precio" [ngClass]="{'is-invalid': precio.errors && (precio.touched || banioForm.submitted), 'is-valid': ! precio.errors}" required >
+                <div [hidden]="!precio.errors?.['required']" class="invalid-feedback">Precio requerido</div>
+              </div>
+              <div class="form-group mb-3">
+                <label class="mt-1 mb-2" for="detalles">Detalles:</label>
+                <textarea class="form-control is-valid input-form-config" name="detalles" #detalles="ngModel" [(ngModel)]="banio.detalles" rows="7"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</form>
+
+<app-modal-table #modalTable (onClose)="onModalTableClose()" (onCorrect)="onModalTableCorrect()"></app-modal-table>

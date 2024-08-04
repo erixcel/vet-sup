@@ -1,0 +1,176 @@
+<div class="p-4">
+  <div class="welcome">
+    <div class="content rounded-3 p-3">
+      <div class="row">
+        <div class="col-9">
+          <h1 class="fs-3">Bienvenido a santos cachorros</h1>
+        <p class="mb-0">Hola {{user.username}}, te encuentras en el panel de datos de la veterinaria Santos Cachorros!</p>
+        </div>
+        <div class="col-3 d-flex align-items-center justify-content-end">
+          <button *ngIf="isAdmin" class="btn btn-download-config" (click)="downloadBackup()">
+            <i class="iconify" data-icon="clarity:backup-solid"></i>
+            Desargar respaldo
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="statis mt-4 text-center">
+    <div class="row">
+      <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+        <div class="box bg-primary p-3">
+          <i class="iconify" data-icon="icon-park-outline:injection"></i>
+          <h3>{{total_tratamientos}}</h3>
+          <p class="lead">Tratamientos realizados</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+        <div class="box bg-danger p-3">
+          <i class="uil-user"></i>
+          <h3>{{total_clientes}}</h3>
+          <p class="lead">Clientes registrados</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+        <div class="box bg-warning p-3">
+          <i class="iconify" data-icon="streamline:nature-ecology-dog-head-dog-pet-animals-canine"></i>
+          <h3>{{total_mascotas}}</h3>
+          <p class="lead">Mascotas registradas</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="box bg-success p-3">
+          <i class="iconify" data-icon="fluent:showerhead-24-regular"></i>
+          <h3>{{total_banios}}</h3>
+          <p class="lead">Baños realizados</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="admins mt-4">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="box">
+          <div class="admin d-flex align-items-center rounded-2 p-3 mb-4">
+            <div class="img">
+              <img class="img-fluid rounded-pill"
+                   width="75" height="75"
+                   src="../../../assets/imgs/foto_vet_1.jpg"
+                   alt="admin">
+            </div>
+            <div class="ms-3">
+              <h3 class="fs-5 mb-1">Jhoselin Santos</h3>
+              <p class="mb-0">Recepcionista de la veterinaria.</p>
+            </div>
+          </div>
+          <div class="admin d-flex align-items-center rounded-2 p-3 mb-4">
+            <div class="img">
+              <img class="img-fluid rounded-pill"
+                   width="75" height="75"
+                   src="../../../assets/imgs/foto_vet_2.jpg"
+                   alt="admin">
+            </div>
+            <div class="ms-3">
+              <h3 class="fs-5 mb-1">Jackelin Santos</h3>
+              <p class="mb-0">Medico de la veterinaria.</p>
+            </div>
+          </div>
+          <div class="admin d-flex align-items-center rounded-2 p-3 mb-4">
+            <div class="img">
+              <img class="img-fluid rounded-pill"
+                   width="75" height="75"
+                   src="../../../assets/imgs/foto_vet_3.jpg"
+                   alt="admin">
+            </div>
+            <div class="ms-3">
+              <h3 class="fs-5 mb-1">Jesus Santos</h3>
+              <p class="mb-0">Groomer de la veterinaria.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="box">
+
+          <div class="admin d-flex align-items-center rounded-2 p-3 mb-4">
+            <div class="img">
+              <img class="img-fluid rounded-pill"
+                   width="75" height="75"
+                   src="../../../assets/imgs/foto_vet_4.jpg"
+                   alt="admin">
+            </div>
+            <div class="ms-3">
+              <h3 class="fs-5 mb-1">Fernando Funes</h3>
+              <p class="mb-0">Almacenero de la veterinaria.</p>
+            </div>
+          </div>
+          <div class="admin d-flex align-items-center rounded-2 p-3 mb-4">
+            <div class="img">
+              <img class="img-fluid rounded-pill"
+                   width="75" height="75"
+                   src="../../../assets/imgs/foto_vet_5.jpg"
+                   alt="admin">
+            </div>
+            <div class="ms-3">
+              <h3 class="fs-5 mb-1">Christian Santos</h3>
+              <p class="mb-0">Dueño de la veterinaria.</p>
+            </div>
+          </div>
+          <div class="admin d-flex align-items-center rounded-2 p-3 mb-4">
+            <div class="img">
+              <img class="img-fluid rounded-pill"
+                   width="75" height="75"
+                   src="../../../assets/imgs/foto_vet_6.jpg"
+                   alt="admin">
+            </div>
+            <div class="ms-3">
+              <h3 class="fs-5 mb-1">Erick Flores</h3>
+              <p class="mb-0">Administrador de la veterinaria.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="statistics">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="box d-flex rounded-2 align-items-center mb-4 mb-lg-0 p-3">
+          <span class="text-center bg-primary rounded-circle"><i class="iconify" data-icon="tabler:calendar-check"></i></span>
+          <div class="ms-3">
+            <div class="d-flex align-items-center">
+              <h3 class="mb-0">{{total_citas}}</h3> <span class="d-block ms-2">Citas</span>
+            </div>
+            <p class="fs-normal mb-0">Total de citas atendidas</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="box d-flex rounded-2 align-items-center mb-4 mb-lg-0 p-3">
+          <span class="text-center bg-danger rounded-circle"><i class="iconify" data-icon="fluent:receipt-money-24-regular"></i></span>
+          <div class="ms-3">
+            <div class="d-flex align-items-center">
+              <h3 class="mb-0">{{total_boletas}}</h3> <span class="d-block ms-2">Boletas</span>
+            </div>
+            <p class="fs-normal mb-0">Total de boletas facturadas</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="box d-flex rounded-2 align-items-center p-3">
+          <span class="text-center bg-success rounded-circle"><i class="iconify" data-icon="eos-icons:cluster-role-binding"></i></span>
+          <div class="ms-3">
+            <div class="d-flex align-items-center">
+              <h3 class="mb-0">{{total_roles}}</h3> <span class="d-block ms-2">Roles</span>
+            </div>
+            <p class="fs-normal mb-0">Total de roles asignados</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>

@@ -1,0 +1,55 @@
+.number-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.number-input button {
+  color: white;
+  width: 30px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+}
+.number-input input[type=number] {
+  width: 40px;
+  text-align: center;
+  height: 30px;
+  border: none;
+  background-color: transparent;
+  color: white;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.minus {
+  background-color: #f44336;
+}
+.minus.max{
+  background-color: #910000;
+}
+.plus {
+  background-color: #00b655;
+}
+.plus.max{
+  background-color: #127340;
+}
+.number-input input[type=number]:focus {
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+.number-input input[type=number]::-webkit-inner-spin-button,
+.number-input input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.hide-increment::-webkit-inner-spin-button,
+.hide-increment::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+

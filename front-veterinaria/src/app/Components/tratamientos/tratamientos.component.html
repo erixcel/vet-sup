@@ -1,0 +1,95 @@
+<div class="container px-4">
+  <div class="d-flex justify-content-between align-items-center py-4">
+    <h3 class="title">Panel de Tratamientos</h3>
+    <div>
+      <button class="btn-pdf-config mx-1" (click)="exportarPDF()">
+        <i class="iconify" data-icon="fa-solid:file-pdf"></i> PDF
+      </button>
+      <button class="btn-excel-config ms-1" (click)="exportarExcel()">
+        <i class="iconify" data-icon="file-icons:microsoft-excel"></i> EXCEL
+      </button>
+    </div>
+  </div>
+  <div class="input-group pb-3">
+    <input type="text" class="form-control search-config" placeholder="Buscar..." [(ngModel)]="text" >
+    <div class="dropdown">
+      <button class="btn-dropdown-config" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="iconify" data-icon="uil:filter"></i> <span #texto> Mascota</span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><span class="dropdown-item" (click)="reloadFilterTratamientos('mascota'); texto.textContent = ' Mascota'">Mascota</span></li>
+        <li><span class="dropdown-item" (click)="reloadFilterTratamientos('cliente'); texto.textContent = ' Cliente'">Cliente</span></li>
+        <li><span class="dropdown-item" (click)="reloadFilterTratamientos('celular'); texto.textContent = ' Celular'">Celular</span></li>
+        <li><span class="dropdown-item" (click)="reloadFilterTratamientos('tipo'); texto.textContent = ' Tipo'">Tipo</span></li>
+        <li><span class="dropdown-item" (click)="reloadFilterTratamientos('fecha'); texto.textContent = ' Fecha'">Fecha</span></li>
+        <li><span class="dropdown-item" (click)="reloadFilterTratamientos('citado'); texto.textContent = ' Citado'">Citado</span></li>
+        <li><span class="dropdown-item" (click)="reloadFilterTratamientos('precio'); texto.textContent = ' Precio'">Precio</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table-config">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Mascota</th>
+          <th></th>
+          <th>Cliente</th>
+          <th></th>
+          <th>Celular</th>
+          <th>Tipo</th>
+          <th>Fecha</th>
+          <th>Citado</th>
+          <th>Precio</th>
+          <th>Mantenimiento</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tratamiento of tratamientos | filterTable:nameColum:text:isModified | paginate: { id:'tabClientes', itemsPerPage: 5, currentPage: page }; let i = index">
+          <td>{{ ((page - 1) * 5) + (i + 1) }}</td>
+          <td>{{tratamiento.mascota}}</td>
+          <td class="circle-image-container">
+            <img class="circle-image" src="{{tratamiento.foto_mascota}}" width="50" height="50" onerror="this.src='../../../assets/imgs/no-img.png'"/>
+          </td>
+          <td>{{tratamiento.cliente}}</td>
+          <td class="circle-image-container">
+            <img class="circle-image" src="{{tratamiento.foto_cliente}}" width="50" height="50" onerror="this.src='../../../assets/imgs/no-img.png'"/>
+          </td>
+          <td>{{tratamiento.celular}}</td>
+          <td>{{tratamiento.tipo}}</td>
+          <td>{{tratamiento.fecha | date:'d/M/yyyy h:mm:ss a'}}</td>
+          <td>
+            {{tratamiento.citado}}
+            <i *ngIf="tratamiento.citado === 'SI'" class="iconify color-correct" data-icon="bi:check-circle"></i>
+            <i *ngIf="tratamiento.citado === 'NO'" class="iconify color-normal" data-icon="pepicons-pop:equal-circle"></i>
+          </td>
+          <td>S/. {{tratamiento.precio}}</td>
+          <td>
+            <div class="container-horizontal-buttons">
+              <a class="btn-edit-config"  routerLink='/menu/tratamientos/editar/{{tratamiento.id}}'>
+                <i class="iconify" data-icon="uil:edit"></i> Editar
+              </a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="ngx-pagination-container">
+    <pagination-controls
+      id="tabClientes"
+      class="ngx-pagination"
+      (pageChange)="page = $event"
+      (pageBoundsCorrection)="page = $event"
+      [maxSize]="5"
+      [directionLinks]="true"
+      [responsive]="true"
+      previousLabel="Anterior"
+      nextLabel="Siguiente"
+      screenReaderPaginationLabel="Paginacion"
+      screenReaderPageLabel="pagina"
+      screenReaderCurrentLabel="Estas en la pagina">
+    </pagination-controls>
+  </div>
+</div>

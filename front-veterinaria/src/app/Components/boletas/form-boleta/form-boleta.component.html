@@ -1,0 +1,133 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-8 pe-0">
+      <div class="p-3 text-center">
+        <div class="d-flex justify-content-between align-items-center">
+          <span class="text-white">FECHA: {{fechaActual}}</span>
+          <span class="title">BOLETA DE VENTA</span>
+          <span class="text-white">№ {{numeroBoleta}}</span>
+        </div>
+        <div class="table-responsive mt-4">
+          <table class="table-config">
+            <thead>
+              <tr>
+                <th class="text-center">№</th>
+                <th class="text-center">PRODUCTO</th>
+                <th class="text-center">PRECIO</th>
+                <th class="text-center">CANTIDAD</th>
+                <th class="text-center">TOTAL</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let detalle of detalle_producto ; let i = index">
+                <td>{{i + 1}}</td>
+                <td>{{detalle.producto!.nombre}}</td>
+                <td>S/. {{detalle.precio}}</td>
+                <td>
+                  <div class="number-input">
+                    <button class="minus" [ngClass]="{'max':detalle.cantidad === 1}" (click)="updateDetalle(detalle.producto!.id,-1)">
+                      <i class="iconify" data-icon="typcn:minus"></i>
+                    </button>
+                    <input class="quantity" min="0" name="quantity" type="number" [value]="detalle.cantidad" readonly>
+                    <button class="plus" [ngClass]="{'max':detalle.producto!.stock === detalle.cantidad}" (click)="updateDetalle(detalle.producto!.id,+1)">
+                      <i class="iconify" data-icon="mdi:add-bold"></i>
+                    </button>
+                  </div>
+                </td>
+                <td>S/. {{detalle.total}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="d-flex justify-content-between py-3 px-4 bg-general-head">
+          <div><span class="text-subtitle-general">SUBTOTAL: </span> S/.{{sub_total}}</div>
+          <div><span class="text-subtitle-general">IGV: </span> S/.{{igv}}</div>
+          <div><span class="text-subtitle-general">PRECIO FINAL: </span> S/.{{precio_final}}</div>
+        </div>
+        <div class="row mt-4">
+          <div  class="col-md-4">
+            <div class="input-group">
+              <div class="dropdown">
+                <button class="btn-dropdown-config invert" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="iconify" data-icon="fluent:money-hand-16-filled"></i>
+                  <span #span class="text-subtitle-general"> EFECTIVO</span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><span class="dropdown-item" (click)="updateTipo('EFECTIVO',span)">Efectivo</span></li>
+                  <li><span class="dropdown-item" (click)="updateTipo('YAPE',span)">Yape</span></li>
+                  <li><span class="dropdown-item" (click)="updateTipo('TARJETA',span)">Tarjeta</span></li>
+                </ul>
+              </div>
+              <span class="span-2-general out">S/.</span>
+              <input type="number" class="form-control input-general" value="{{saldo}}" [readOnly]="tipo_pago!=='efectivo'" (change)="onSaldoChange($event)">
+            </div>
+          </div>
+          <div class="col-md-4 d-flex justify-content-center align-items-center">
+            <span class="text-subtitle-general color-head mx-2">VUELTO: </span>
+            <div class="input-group">
+              <span class="span-1-general invert">S/.</span>
+              <input type="number" class="form-control input-general" value="{{vuelto}}" readonly>
+            </div>
+          </div>
+          <div class="col-md-1">
+            <button class="btn-clean-config w-100" (click)="cleanDetalleProducto()">
+              <i class="iconify" data-icon="material-symbols:cleaning-bucket"></i>
+            </button>
+          </div>
+          <div class="col-md-3">
+            <button class="btn btn-primary w-100" (click)="registerBoleta()">
+              <i class="iconify" data-icon="ion:newspaper-sharp"></i> <span class="text-subtitle-general"> REGISTRAR VENTA</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="d-flex align-items-center justify-content-between bg-general-head rounded-top-2 p-3">
+        <span class="text-title-general">Cliente Seleccionado</span>
+        <button class="btn btn-outline-primary border-1 border-white" [routerLink]="['/menu/clientes/seleccionar']">
+          <i class="iconify" data-icon="fa-solid:search"></i>
+        </button>
+      </div>
+      <div class="d-flex align-items-center p-3 bg-general-body">
+        <img class="circle-image" src="{{clienteSelect.foto}}" width="70" height="70" onerror="this.src='../../../assets/imgs/no-img.png'"/>
+        <div class="ms-3">
+          <span class="d-block my-2 text-first-general color-head">{{clienteSelect.nombre}} {{clienteSelect.apellidos}}</span>
+          <span class="d-block my-2 text-second-general color-body">Cell: {{clienteSelect.celular}}</span>
+        </div>
+      </div>
+      <div class="d-flex align-items-center justify-content-between bg-general-head p-3">
+        <span class="text-title-general">Productos Seleccionados</span>
+        <button class="btn bg-general-head border-1 border-white" [routerLink]="['/menu/productos/seleccionar']">
+          <i class="iconify" data-icon="eos-icons:cluster-management-outlined"></i>
+        </button>
+      </div>
+      <div style="overflow-y: auto; max-height: 376px;">
+        <div *ngFor="let producto of productosSelect ; let i = index" class="py-2 bg-general-body">
+          <div class="d-flex justify-content-between align-items-center py-1 px-3">
+            <div class="d-flex align-items-center">
+              <div class="position-relative">
+                <img class="img-fluid" src="{{producto!.foto}}" width="70" height="70" onerror="this.src='../../../assets/imgs/no-img.png'"/>
+                <button class="btn btn-secondary position-absolute bottom-0 end-0 rounded-0 p-0" (click)="removeProducto(producto!.id)">
+                  <i class="iconify" data-icon="ph:trash-fill"></i>
+                </button>
+              </div>
+              <div class="ms-3">
+                <span class="d-block my-2 text-first-general color-head ">{{producto!.nombre}}</span>
+                <span class="d-block my-2 text-second-general color-body">Stock : {{producto!.stock}}</span>
+              </div>
+            </div>
+            <div class="d-flex flex-column align-items-center">
+              <button class="btn py-0 px-2 rounded-bottom-0" [ngClass]="{'btn-primary': i != 0,'btn-secondary':i == 0}" (click)="moveProducto(producto!.id,0)">
+                <i class="iconify" data-icon="mdi:arrow-top-bold"></i>
+              </button>
+              <button class="btn py-0 px-2 rounded-top-0" [ngClass]="{'btn-primary': i != productosSelect.length -1 ,'btn-secondary':i == productosSelect.length - 1}" (click)="moveProducto(producto!.id,1)">
+                <i class="iconify" data-icon="mdi:arrow-bottom-bold"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

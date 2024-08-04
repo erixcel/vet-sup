@@ -1,0 +1,442 @@
+<form #mascotaForm="ngForm" (ngSubmit)="save(mascotaForm,flashMascota)">
+  <section class="mt-3">
+    <div class="container">
+      <div class="row mb-3">
+        <div class="col">
+          <div class="title-form-container">
+              <span><i class="iconify" data-icon="medical-icon:imaging-alternative-pet"></i> {{title}}</span>
+              <img class="circle-image floating" id="openFoto" data-bs-toggle="modal" data-bs-target="#fotoModal" src="{{mascota.foto}}" width="50" height="50" onerror="this.src='../../../assets/imgs/no-img.png'"/>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3" *ngIf="isEditar">
+        <div class="col-md-4 my-1">
+          <button [routerLink]="['/menu/mascotas']" class="btn-return-config">
+            <i class="iconify" data-icon="ooui:arrow-previous-ltr"></i> Regresar
+          </button>
+        </div>
+        <div class="col-md-4 my-1">
+          <button type="submit" class="btn-save-config">
+            <i class="iconify" data-icon="ion:save-sharp"></i> Guardar Mascota
+          </button>
+        </div>
+        <div class="col-md-4 my-1">
+          <button type="button" class="btn-delete-config" (click)="delete()">
+            <i class="iconify" data-icon="icon-park-solid:delete"></i> Eliminar Mascota
+          </button>
+        </div>
+      </div>
+      <div class="row mb-3" *ngIf="!isEditar">
+        <div class="col-md-6 my-1">
+          <button [routerLink]="['/menu/mascotas']" class="btn-return-config">
+            <i class="iconify" data-icon="ooui:arrow-previous-ltr"></i> Regresar
+          </button>
+        </div>
+        <div class="col-md-6 my-1">
+          <button type="submit" class="btn-save-config">
+            <i class="iconify" data-icon="ion:save-sharp"></i> Guardar Mascota
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="mb-3">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="card config">
+            <div class="card-header">
+              <h4 class="pt-2">Datos de la mascota</h4>
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <flash-messages #flashMascota></flash-messages>
+              </div>
+              <div class="form-group mb-3">
+                <label class="mt-1 mb-2" for="nombre">Nombre:</label>
+                <input class="form-control input-form-config" type="text" name="nombre" #nombre="ngModel" [(ngModel)]="mascota.nombre" [ngClass]="{'is-invalid': nombre.errors && (nombre.touched || mascotaForm.submitted), 'is-valid': ! nombre.errors}" minlength="2" required >
+                <div [hidden]="!nombre.errors?.['required']" class="invalid-feedback">Nombre requerido</div>
+                <div [hidden]="!nombre.errors?.['minlength']" class="invalid-feedback">Minimo 2 caracteres</div>
+              </div>
+              <div class="form-group mb-3">
+                <label class="mt-1 mb-2" for="cliente">Dueño:</label>
+                <input class="form-control" type="hidden" id="clienteId" name="clienteId" #clienteId="ngModel" [(ngModel)]="mascota.cliente!.id" readonly>
+                <div class="input-group">
+                  <input class="form-control input-form-config is-valid" type="text" name="cliente" [value]="mascota.cliente!.nombre + ' ' + mascota.cliente!.apellidos">
+                  <button class="btn-search-config" type="button">
+                    <i class="iconify" data-icon="fa-solid:search"></i>
+                  </button>
+                </div>
+
+              </div>
+              <div class="form-group mb-3">
+                <label class="mt-1 mb-2" for="sexo">Sexo:</label>
+                <div class="input-group">
+                  <input class="form-control input-form-config is-valid" type="text" name="sexo" #sexo="ngModel" [(ngModel)]="mascota.sexo" readonly>
+                  <button class="btn-dropdown-config" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="iconify" data-icon="fe:drop-down"></i>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" (click)="mascota.sexo='Macho'">Macho</a></li>
+                    <li><a class="dropdown-item" (click)="mascota.sexo='Hembra'">Hembra</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <label class="mt-1 mb-2" for="especie">Especie:</label>
+                <div class="input-group">
+                  <input class="form-control input-form-config" type="text" name="especie" #especie="ngModel" [(ngModel)]="mascota.raza!.especie!.nombre" [ngClass]="{'is-invalid': especie.errors && (especie.touched || mascotaForm.submitted), 'is-valid': ! especie.errors}" minlength="2" required >
+                  <button class="btn-dropdown-config" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="iconify" data-icon="fe:drop-down"></i>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li *ngFor="let especie of especies">
+                      <a class="dropdown-item" (click)="refreshRazas(especie.id)">{{especie.nombre}}</a>
+                    </li>
+                  </ul>
+                  <div [hidden]="!especie.errors?.['required']" class="invalid-feedback">Especie requerida</div>
+                  <div [hidden]="!especie.errors?.['minlength']" class="invalid-feedback">Minimo 2 caracteres</div>
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <label class="mt-1 mb-2" for="raza">Raza:</label>
+                <div class="input-group">
+                  <input class="form-control input-form-config" type="text" name="raza" #raza="ngModel" [(ngModel)]="mascota.raza!.nombre" [ngClass]="{'is-invalid': raza.errors && (raza.touched || mascotaForm.submitted), 'is-valid': ! raza.errors}" minlength="2" required >
+                  <button class="btn-dropdown-config" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="iconify" data-icon="fe:drop-down"></i>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li *ngFor="let raza of razas">
+                      <a *ngIf="raza.especie!.id === mascota.raza!.especie!.id" (click)="mascota.raza = raza" class="dropdown-item">{{raza.nombre}}</a>
+                    </li>
+                  </ul>
+                  <div [hidden]="!raza.errors?.['required']" class="invalid-feedback">Raza requerida</div>
+                  <div [hidden]="!raza.errors?.['minlength']" class="invalid-feedback">Minimo 2 caracteres</div>
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <label class="mt-1 mb-2" for="edad">Edad:</label>
+                <fieldset class="border rounded-2 p-3" #edad [ngClass]="{'border-danger': (anios.errors || meses.errors) && (anios.touched || meses.touched || mascotaForm.submitted), 'border-success': ! (anios.errors && meses.errors)}">
+                  <div class="row">
+                    <div class="col-6 pe-2">
+                      <label class="mb-2">Años</label>
+                      <input class="form-control input-form-config mb-1" type="number" name="anos" #anios="ngModel" [(ngModel)]="mascota.anios" [ngClass]="{'is-invalid': anios.errors && (anios.touched || mascotaForm.submitted), 'is-valid': ! anios.errors}" min="0" required >
+                      <div [hidden]="!anios.errors?.['required']" class="invalid-feedback">Años requerido</div>
+                      <div [hidden]="!anios.errors?.['min']" class="invalid-feedback">Debe ser >= 0 </div>
+                    </div>
+                    <div class="col-6 ps-2">
+                      <label class="mb-2">Meses</label>
+                      <input class="form-control input-form-config mb-1" type="number" name="meses" #meses="ngModel" [(ngModel)]="mascota.meses" [ngClass]="{'is-invalid': meses.errors && (meses.touched || mascotaForm.submitted), 'is-valid': ! meses.errors}" min="0" max="11" required >
+                      <div [hidden]="!meses.errors?.['required']" class="invalid-feedback">Meses requerido</div>
+                      <div [hidden]="!meses.errors?.['min']" class="invalid-feedback">Debe ser >= 0 </div>
+                      <div [hidden]="!meses.errors?.['max']" class="invalid-feedback">Debe ser <= 11 </div>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="form-group mb-3">
+                <label class="mt-1 mb-2" for="peso">Peso:</label>
+                <input class="form-control input-form-config" type="number" name="peso" #peso="ngModel" [(ngModel)]="mascota.peso" [ngClass]="{'is-invalid': peso.errors && (peso.touched || mascotaForm.submitted), 'is-valid': ! peso.errors}" min="0" required >
+                <div [hidden]="!peso.errors?.['required']" class="invalid-feedback">Peso requerido</div>
+                <div [hidden]="!peso.errors?.['min']" class="invalid-feedback">Peso minimo 0</div>
+              </div>
+              <div class="form-group mb-3">
+                <label class="mt-1 mb-2" for="descripcion">Descripcion:</label>
+                <textarea class="form-control input-form-config is-valid" name="descripcion" #descripcion="ngModel" [(ngModel)]="mascota.descripcion" rows="3"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section *ngIf="isEditar && isVeterinario" class="mb-3">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="card config">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h4 class="pt-2">Tratamientos</h4>
+              <button class="btn btn-dark text-white float-end border-white border-1" (click)="openFormRegisterTratamiento(mascota!.id)">
+                <i class="iconify" data-icon="mdi:add-bold"></i>
+              </button>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <div class="table-form-container">
+                  <table class="table-form-config">
+                    <thead>
+                      <tr>
+                        <th scope="col" class="text-center" style="width: 50px">#</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Citado</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Edit</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let tratamiento of tratamientosMascota | paginate: { id:'tratamientosMascota', itemsPerPage: 5, currentPage: pageTratamientos }; let i = index">
+                        <td class="text-center">{{ ((pageTratamientos - 1) * 5) + (i + 1) }}</td>
+                        <td>{{tratamiento.fecha | date:'d/M/yyyy h:mm:ss a'}}</td>
+                        <td>
+                          {{tratamiento.citado}}
+                          <i *ngIf="tratamiento.citado === 'SI'" class="iconify color-correct" data-icon="bi:check-circle"></i>
+                          <i *ngIf="tratamiento.citado === 'NO'" class="iconify color-normal" data-icon="pepicons-pop:equal-circle"></i>
+                        </td>
+                        <td>{{tratamiento.tipo}}</td>
+                        <td>S/. {{tratamiento.precio}}</td>
+                        <td>
+                          <a class="btn-edit-config"  routerLink='/menu/tratamientos/editar/{{tratamiento.id}}'>
+                            <i class="iconify" data-icon="uil:edit"></i>
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <pagination-controls
+                id = 'tratamientosMascota'
+                (pageChange)="pageTratamientos = $event"
+                (pageBoundsCorrection)="pageTratamientos = $event"
+                [maxSize]="5"
+                [directionLinks]="true"
+                [autoHide]="true"
+                [responsive]="true"
+                previousLabel="Anterior"
+                nextLabel="Siguiente"
+                screenReaderPaginationLabel="Paginacion"
+                screenReaderPageLabel="pagina"
+                screenReaderCurrentLabel="Estas en la pagina">
+              </pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section *ngIf="isEditar && isGroomer" class="mb-3">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="card config">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h4 class="pt-2">Baños</h4>
+              <button class="btn btn-dark text-white float-end border-white border-1" (click)="openFormRegisterBanio(mascota!.id)">
+                <i class="iconify" data-icon="mdi:add-bold"></i>
+              </button>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <div class="table-form-container">
+                  <table class="table-form-config">
+                    <thead>
+                      <tr>
+                        <th scope="col" class="text-center" style="width: 50px">#</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Citado</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Edit</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let banio of baniosMascota | paginate: { id:'baniosMascota', itemsPerPage: 5, currentPage: pageBanios }; let i = index">
+                        <td class="text-center">{{ ((pageBanios - 1) * 5) + (i + 1) }}</td>
+                        <td>{{banio.fecha | date:'d/M/yyyy h:mm:ss a'}}</td>
+                        <td>
+                          {{banio.citado}}
+                          <i *ngIf="banio.citado === 'SI'" class="iconify color-correct" data-icon="bi:check-circle"></i>
+                          <i *ngIf="banio.citado === 'NO'" class="iconify color-normal" data-icon="pepicons-pop:equal-circle"></i>
+                        </td>
+                        <td>{{banio.tipo}}</td>
+                        <td>S/. {{banio.precio}}</td>
+                        <td>
+                          <a class="btn-edit-config"  routerLink='/menu/banios/editar/{{banio.id}}'>
+                            <i class="iconify" data-icon="uil:edit"></i>
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <pagination-controls
+                id = 'baniosMascota'
+                (pageChange)="pageBanios = $event"
+                (pageBoundsCorrection)="pageBanios = $event"
+                [maxSize]="5"
+                [directionLinks]="true"
+                [autoHide]="true"
+                [responsive]="true"
+                previousLabel="Anterior"
+                nextLabel="Siguiente"
+                screenReaderPaginationLabel="Paginacion"
+                screenReaderPageLabel="pagina"
+                screenReaderCurrentLabel="Estas en la pagina">
+              </pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section *ngIf="isEditar && (isRecepcionista || isGroomer || isVeterinario) " class="mb-3">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="card config">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h4 class="pt-2">Citas</h4>
+              <button class="btn btn-dark text-white float-end border-white border-1" (click)="openFormRegisterCita(mascota!.id!)">
+                <i class="iconify" data-icon="mdi:add-bold"></i>
+              </button>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <div class="table-form-container">
+                  <table class="table-form-config">
+                    <thead>
+                      <tr>
+                        <th scope="col" class="text-center" style="width: 50px">#</th>
+                        <th scope="col">F-programada</th>
+                        <th scope="col">F-atendida</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Motivo</th>
+                        <th scope="col">Edit</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let cita of citasMascota | paginate: { id:'citasMascota', itemsPerPage: 5, currentPage: pageBanios }; let i = index">
+                        <td class="text-center">{{ ((pageBanios - 1) * 5) + (i + 1) }}</td>
+                        <td>{{cita.fecha_programada | date:'d/M/yyyy h:mm:ss a'}}</td>
+                        <td>{{cita?.fecha_atendida !== null ? (cita.fecha_atendida | date:'d/M/yyyy h:mm:ss a') : '------------'}}</td>
+                        <td>
+                          <i *ngIf="cita.estado === 'pendiente'" class="iconify color-normal" data-icon="svg-spinners:clock"></i>
+                          <i *ngIf="cita.estado === 'atendida'" class="iconify color-correct" data-icon="fa6-solid:check"></i>
+                          <i *ngIf="cita.estado === 'cancelada'" class="iconify color-cancelled" data-icon="ooui:cancel"></i>
+                          {{cita.estado}}
+                        </td>
+                        <td>{{cita.motivo}}</td>
+                        <td>
+                          <div class="container-horizontal-buttons">
+                            <a class="btn-edit-config" routerLink='/menu/citas/editar/{{cita.id}}'>
+                              <i class="iconify" data-icon="uil:edit"></i>
+                            </a>
+                            <a *ngIf="cita.estado === 'pendiente' && (isVeterinario || isGroomer)" class="btn-correct-config" id="abrirModal" data-bs-toggle="modal" data-bs-target="#atenderModal" (click)="idCita=cita.id">
+                              <i class="iconify" data-icon="tabler:calendar-check"></i>
+                            </a>
+                            <a *ngIf="cita.estado === 'pendiente'" class="btn-cancel-config" id="abrirModal" data-bs-toggle="modal" data-bs-target="#cancelarModal" (click)="idCita=cita.id">
+                              <i class="iconify" data-icon="line-md:cancel"></i>
+                            </a>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <pagination-controls
+                id = 'citasMascota'
+                (pageChange)="pageCitas = $event"
+                (pageBoundsCorrection)="pageCitas = $event"
+                [maxSize]="5"
+                [directionLinks]="true"
+                [autoHide]="true"
+                [responsive]="true"
+                previousLabel="Anterior"
+                nextLabel="Siguiente"
+                screenReaderPaginationLabel="Paginacion"
+                screenReaderPageLabel="pagina"
+                screenReaderCurrentLabel="Estas en la pagina">
+              </pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</form>
+
+
+<!-- Modal -->
+<div class="modal fade" id="fotoModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <img src="{{mascota.foto}}" class="w-100 rounded" onerror="this.src='../../../assets/imgs/no-img.png'"/>
+        <div class="d-flex justify-content-between mt-3">
+          <label class="btn btn-primary">
+            <i class="iconify" data-icon="fa-solid:upload"></i> Subir imagen
+            <input class="d-none" type="file" id="inputImagen" (change)="onFileSelected($event)">
+          </label>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">
+            <i class="iconify" data-icon="fa-solid:save"></i> Guardar imagen
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Cancelar Modal -->
+<div class="modal fade" id="cancelarModal" style="overflow-y: auto;" >
+  <div class="modal-dialog-centered modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header bg-general-head-modal">
+        <h5 class="modal-title">Cancelar Cita #{{idCita}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #cerrarCancel></button>
+      </div>
+      <div class="modal-body bg-general-body-modal">
+        <form #anularForm="ngForm" (ngSubmit)="cancelar(anularForm,cerrarCancel)">
+          <div class="form-group mb-3">
+            <label class="my-1 mb-2 text-white" for="motivo">Motivo de cancelacion:</label>
+            <textarea class="form-control input-form-config" rows="4" name="motivo" #motivo="ngModel" [(ngModel)]="mensaje" [ngClass]="{'is-invalid': motivo.errors && (motivo.touched || anularForm.submitted), 'is-valid': ! motivo.errors}" minlength="5" required></textarea>
+            <div [hidden]="!motivo.errors?.['required']" class="invalid-feedback">Motivo requerido</div>
+            <div [hidden]="!motivo.errors?.['minlength']" class="invalid-feedback">Minimo 5 caracteres</div>
+          </div>
+          <button [hidden]="true" #enviarCancelacion type="submit"></button>
+        </form>
+      </div>
+      <div class="modal-footer bg-general-body-modal">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" (click)="enviarCancelacion.click()">Anular</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Atender Modal -->
+<div class="modal fade" id="atenderModal" style="overflow-y: auto;" >
+  <div class="modal-dialog-centered modal-dialog modal-md modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header bg-general-head-modal">
+        <h5 class="modal-title">Atender Cita #{{idCita}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #cerrarAtender></button>
+      </div>
+      <div class="modal-body bg-general-body-modal">
+        <div class="row">
+          <div class="col-12 mb-3">
+            <button class="btn btn-secondary w-100" (click)="openFormRegisterTratamientoCita(idCita,cerrarAtender)">
+              <i class="iconify" data-icon="game-icons:medical-pack-alt"></i> Servicio Medico
+            </button>
+          </div>
+          <div class="col-12">
+            <button class="btn btn-secondary w-100" (click)="openFormRegisterBanioCita(idCita,cerrarAtender)">
+              <i class="iconify" data-icon="streamline:travel-wafinder-sink-wash-clean-toilet-bathroom-water"></i> Servicio de Aseo
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

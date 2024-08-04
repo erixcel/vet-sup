@@ -1,0 +1,6 @@
+services:
+- type: web
+  name: front-veterinaria
+  env: static
+  buildCommand: "ng build"
+  staticPublishPath: ./dist/front-veterinaria

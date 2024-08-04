@@ -1,0 +1,147 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-8 pe-0">
+      <div class="p-3 text-center">
+        <div class="d-flex justify-content-between align-items-center">
+          <span class="text-white">FECHA: {{fechaActual}}</span>
+          <span class="title">ORDEN DE COMPRA</span>
+          <span class="text-white">№ {{numeroPedido}}</span>
+        </div>
+        <div class="table-responsive mt-4">
+          <table class="table-config">
+            <thead>
+              <tr>
+                <th class="text-center" style="min-width: 62px;">№</th>
+                <th class="text-center">PRODUCTO</th>
+                <th class="text-center">MARCA</th>
+                <th class="text-center">UNIDAD MEDIDA</th>
+                <th class="text-center">CANTIDAD</th>
+                <th class="text-center">PRECIO COMPRA</th>
+                <th class="text-center">IMPORTE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let detalle of detalle_producto ; let i = index" (mouseenter)="showButtons[i] = true" (mouseleave)="showButtons[i] = false">
+                <td>
+                  <span *ngIf="!showButtons[i]">{{i + 1}}</span>
+                  <button *ngIf="showButtons[i]" class="btn btn-secondary" (click)="removePedidoProducto(detalle.producto!.id!)">
+                    <i class="iconify" data-icon="ph:trash-fill"></i>
+                  </button>
+                </td>
+                <td>{{detalle.producto!.nombre}}</td>
+                <td>{{detalle.producto!.marca}}</td>
+                <td>{{detalle.producto!.unidad_medida}}</td>
+                <td>
+                  <div class="number-input">
+                    <button class="minus custom-button" [ngClass]="{'max':detalle.cantidad === 1}" (click)="updateDetalle(detalle.producto!.id!,-1)">
+                      <i class="iconify" data-icon="typcn:minus"></i>
+                    </button>
+                    <input class="quantity" min="1" name="quantity" type="number" [value]="detalle.cantidad" #cantidad (change)="changeCantidad(cantidad, detalle.producto!.id!)">
+                    <button class="plus" (click)="updateDetalle(detalle.producto!.id!,+1)">
+                      <i class="iconify" data-icon="mdi:add-bold"></i>
+                    </button>
+                  </div>
+                </td>
+                <td>S/. {{detalle.precio_compra}}</td>
+                <td>S/. {{detalle.importe}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="d-flex justify-content-end py-3 px-4 bg-general-head">
+          <span class="text-subtitle-general">TOTAL: S/.{{total}}</span>
+        </div>
+        <div class="row mt-4">
+          <div  class="col-4">
+            <div class="input-group">
+              <div class="dropdown">
+                <button class="btn-dropdown-config invert" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="iconify" data-icon="fluent:money-hand-16-filled"></i>
+                  <span #span class="text-subtitle-general"> EFECTIVO</span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><span class="dropdown-item" (click)="updateTipo('EFECTIVO',span)">Efectivo</span></li>
+                  <li><span class="dropdown-item" (click)="updateTipo('YAPE',span)">Yape</span></li>
+                  <li><span class="dropdown-item" (click)="updateTipo('TARJETA',span)">Tarjeta</span></li>
+                </ul>
+              </div>
+              <span class="span-2-general out">S/.</span>
+              <input type="number" class="form-control input-general" value="{{total}}" readonly>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <button class="btn-clean-config w-100" (click)="cleanDetalleProducto()">
+              <i class="iconify" data-icon="material-symbols:cleaning-bucket"></i> <span class="text-subtitle-general"> LIMPIAR TODO</span>
+            </button>
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-primary w-100" (click)="registerPedido()">
+              <i class="iconify" data-icon="ion:newspaper-sharp"></i> <span class="text-subtitle-general"> SOLICITAR ORDEN</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="d-flex align-items-center justify-content-between bg-general-head rounded-top-2 p-3">
+        <span class="text-title-general">Seleccionar Proveedor</span>
+        <button class="btn bg-general-head border-1 border-white" (click)="selectProveedor()">
+          <i class="iconify" data-icon="fa-solid:search"></i>
+        </button>
+      </div>
+      <div class="d-flex align-items-center p-3 bg-general-body">
+        <img class="circle-image" src="{{proveedor.foto}}" width="70" height="70" onerror="this.src='../../../assets/imgs/no-img.png'"/>
+        <div class="ms-3 w-100">
+          <div class="d-flex justify-content-between my-2 text-first-general color-head ">
+            <span class="d-block">{{proveedor.nombre}}</span>
+            <span class="d-block"><i class="iconify" data-icon="vaadin:phone"></i> {{proveedor.celular}}</span>
+          </div>
+          <span class="d-block my-2 text-second-general color-body">{{proveedor.correo}}</span>
+        </div>
+      </div>
+      <div class="d-block align-items-center align-content-between bg-general-head p-3">
+        <div class="d-flex justify-content-between align-items-center w-100">
+          <span class="text-title-general my-1">Seleccionar Productos</span>
+          <button *ngIf="!isSearch" class="btn bg-general-head border-1 border-white" (click)="openSearch()">
+            <i class="iconify" data-icon="fluent:box-search-16-regular"></i>
+          </button>
+          <button *ngIf="isSearch" class="btn bg-general-head border-1 border-white" (click)="closeSearch()">
+            <i class="iconify" data-icon="oi:x"></i>
+          </button>
+        </div>
+        <input *ngIf="isSearch" type="text" class="form-control search-config mt-3" placeholder="Buscar..." [(ngModel)]="text">
+      </div>
+      <div style="overflow-y: auto; max-height: 376px;">
+        <div *ngFor="let producto of productos | filterTable:nameColum:text:isModified ; let i = index">
+          <div *ngIf="!isPedidoProducto(producto.id)" class="py-2 bg-general-body">
+            <div class="d-flex justify-content-between align-items-center py-1 px-3">
+              <div class="d-flex align-items-center">
+                <div class="position-relative">
+                  <img class="img-fluid" src="{{producto!.foto}}" width="70" height="70" onerror="this.src='../../../assets/imgs/no-img.png'"/>
+                  <button class="btn btn-secondary position-absolute bottom-0 end-0 rounded-0 p-0 text-white">
+                    <i class="iconify" data-icon="pepicons-pop:info"></i>
+                  </button>
+                </div>
+                <div class="ms-3">
+                  <span class="d-block my-2 text-first-general color-head ">{{producto!.nombre}}</span>
+                  <span class="d-block my-2 text-second-general color-body">Costo: S/. {{producto!.precio_compra}}</span>
+                </div>
+              </div>
+              <div class="d-block">
+                <span class="text-util-general">Cantidad:</span>
+                <div class="input-group mt-1" style="max-width: 110px;">
+                  <input type="number" class="form-control bg-primary-subtle hide-increment" #cantidad value="1" (change)="validInput(cantidad)">
+                  <button class="btn btn-primary" (click)="addPedidoProducto(producto, +cantidad.value)">
+                    <i class="fa-solid fa-file-import"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-modal-table #modalTable (onCorrect)="onModalTableCorrect()"></app-modal-table>

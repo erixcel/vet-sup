@@ -1,0 +1,121 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-9 px-4">
+      <div class="pt-3 pb-4 d-flex justify-content-between align-items-center">
+        <button class="btn-change-config" (click)="increment(-1)">
+          <i class="iconify" data-icon="fa:angle-double-left"></i>
+          Anterior
+        </button>
+        <span class="title">INGRESOS DEL DIA</span>
+        <button class="btn-change-config" (click)="increment(1)">
+          Siguiente
+          <i class="iconify" data-icon="fa:angle-double-right"></i>
+        </button>
+      </div>
+      <div class="rectangle bg-general-head">
+        <span>HORA </span>
+        <span>CLIENTE</span>
+        <span>SERVICIO </span>
+        <span>MONTO </span>
+      </div>
+      <div *ngFor="let ingreso of ingresos" class="rectangle bg-general-body">
+        <span>{{ ingreso.hora }}</span>
+        <span>{{ ingreso.cliente }}</span>
+        <span>{{ ingreso.servicio }}</span>
+        <span class="d-flex justify-content-between">
+          S/. {{ ingreso.precio }}
+          <a *ngIf="isDropeado(ingreso.id, ingreso.servicio)" (click)="hideDetails(ingreso.id, ingreso.servicio)"><i class="iconify" data-icon="ep:arrow-up-bold"></i></a>
+          <a *ngIf="!isDropeado(ingreso.id, ingreso.servicio)" (click)="showDetails(ingreso.id, ingreso.servicio)"><i class="iconify" data-icon="ep:arrow-down-bold"></i></a>
+        </span>
+        <div *ngIf="isDropeado(ingreso.id, ingreso.servicio)" class="span-4">
+          <ng-container *ngIf="getDropeado(ingreso.id, ingreso.servicio) as data">
+            <div *ngIf="ingreso.servicio !== 'Venta'" class="rectangle-info grid-3">
+              <span class="text-center text-first-general bg-general-head py-2">Numero del Cliente</span>
+              <span class="text-center text-first-general bg-general-head py-2">Especificacion</span>
+              <span class="text-center text-first-general bg-general-head py-2">Nombre de la Mascota</span>
+              <div class="text-center bg-general-head-light p-2">
+                <img class="circle-image me-3" src="{{data.mascota.cliente.foto}}" width="50" height="50" onerror="this.src='../../../assets/imgs/no-img.png'"/>
+                {{data.mascota.cliente.celular}}
+              </div>
+              <div class="h-100 d-flex align-items-center justify-content-center bg-general-head-light p-2" >
+                {{data.tipo}}
+              </div>
+              <div class="text-center bg-general-head-light p-2">
+                <img class="circle-image me-3" src="{{data.mascota.foto}}" width="50" height="50" onerror="this.src='../../../assets/imgs/no-img.png'"/>
+                {{data.mascota.nombre}}
+              </div>
+              <span class="span-3 text-center text-first-general bg-general-head py-2">
+                {{ingreso.servicio === 'Baño' ? 'Detalles' : 'Descripcion'}}
+              </span>
+              <textarea class="span-3 form-control bg-general-body-light color-body" rows="3" value="{{ingreso.servicio === 'Baño' ? data.detalles : data.descripcion}}" readonly></textarea>
+            </div>
+            <div *ngIf="ingreso.servicio === 'Venta'" class="rectangle-info grid-12">
+              <span class="span-4 text-center text-first-general bg-general-head py-2">Numero del Cliente</span>
+              <span class="span-4 text-center text-first-general bg-general-head py-2">IGV</span>
+              <span class="span-4 text-center text-first-general bg-general-head py-2">Tipo de Pago</span>
+              <div class="span-4 text-center bg-general-head-light p-2">
+                <img class="circle-image me-3" src="{{data.cliente.foto}}" width="50" height="50" onerror="this.src='../../../assets/imgs/no-img.png'"/>
+                {{data.cliente.celular}}
+              </div>
+              <div class="span-4 h-100 d-flex align-items-center justify-content-center bg-general-head-light p-2" >
+                S/. {{data.igv}}
+              </div>
+              <div class="span-4 h-100 d-flex align-items-center justify-content-center bg-general-head-light p-2" >
+                <i class="iconify" data-icon="fluent:money-hand-16-filled"></i> {{data.tipo_pago}}
+              </div>
+              <span class="span-3 text-center text-first-general bg-general-head py-2">Producto</span>
+              <span class="span-3 text-center text-first-general bg-general-head py-2">Cantidad</span>
+              <span class="span-3 text-center text-first-general bg-general-head py-2">Precio</span>
+              <span class="span-3 text-center text-first-general bg-general-head py-2">Total</span>
+              <ng-container *ngFor="let item of data.detalle_producto">
+                <div class="span-3 text-center bg-general-body-light p-2">{{item.producto.nombre}}</div>
+                <div class="span-3 text-center bg-general-body-light p-2">{{item.cantidad}} uni.</div>
+                <div class="span-3 text-center bg-general-body-light p-2">S/. {{item.precio}}</div>
+                <div class="span-3 text-center bg-general-body-light p-2">S/. {{item.total}}</div>
+              </ng-container>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 px-4 ps-0">
+      <input class="form-control input-form-config mb-3" type="date" [(ngModel)]="today" (change)="changeFecha()">
+      <section class="statis text-center">
+        <div class="row">
+          <div class="col-12 mb-3">
+            <div class="box bg-warning p-3">
+              <i class="iconify" data-icon="nimbus:money"></i>
+              <h3>S/.{{sumaIngresos}}</h3>
+              <p class="lead m-0">Total del dia</p>
+            </div>
+          </div>
+          <div class="col-12 mb-3">
+            <div class="box bg-primary p-3">
+              <i class="iconify" data-icon="fluent:showerhead-24-regular"></i>
+              <h3>S/.{{ingresoBanios}}</h3>
+              <p class="lead m-0">Ingresos en Baños</p>
+            </div>
+          </div>
+          <div class="col-12 mb-3">
+            <div class="box bg-danger p-3">
+              <i class="iconify" data-icon="icon-park-outline:injection"></i>
+              <h3>S/.{{ingresoTratamientos}}</h3>
+              <p class="lead m-0">Ingresos en Tratamientos</p>
+            </div>
+          </div>
+          <div class="col-12 mb-3">
+            <div class="box bg-success p-3">
+              <i class="iconify" data-icon="fluent:shopping-bag-24-regular"></i>
+              <h3>S/.{{ingresoVentas}}</h3>
+              <p class="lead m-0">Ingresos en Ventas</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+
+
+

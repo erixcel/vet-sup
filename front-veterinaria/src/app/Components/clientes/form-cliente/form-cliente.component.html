@@ -1,0 +1,189 @@
+<form #clienteForm="ngForm" (ngSubmit)="save(clienteForm,flashCliente)">
+  <section class="mt-3">
+    <div class="container">
+      <div class="row mb-3">
+        <div class="col">
+          <div class="title-form-container">
+            <span><i class="iconify" data-icon="fa-solid:user-alt"></i> {{title}}</span>
+            <img class="circle-image floating" id="openFoto" data-bs-toggle="modal" data-bs-target="#fotoModal" src="{{cliente.foto}}" width="50" height="50" onerror="this.src='../../../assets/imgs/no-img.png'"/>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3" *ngIf="isEditar">
+        <div class="col-md-4 my-1">
+          <button [routerLink]="['/menu/clientes']" class="btn-return-config">
+            <i class="iconify" data-icon="ooui:arrow-previous-ltr"></i> Regresar
+          </button>
+        </div>
+        <div class="col-md-4 my-1">
+          <button type="submit" class="btn-save-config">
+            <i class="iconify" data-icon="ion:save-sharp"></i> Guardar Cliente
+          </button>
+        </div>
+        <div class="col-md-4 my-1">
+          <button type="button" class="btn-delete-config" (click)="delete()">
+            <i class="iconify" data-icon="icon-park-solid:delete"></i> Eliminar Cliente
+          </button>
+        </div>
+      </div>
+      <div class="row mb-3" *ngIf="!isEditar">
+        <div class="col-md-6 my-1">
+          <button [routerLink]="['/menu/clientes']" class="btn-return-config">
+            <i class="iconify" data-icon="ooui:arrow-previous-ltr"></i> Regresar
+          </button>
+        </div>
+        <div class="col-md-6 my-1">
+          <button type="submit" class="btn-save-config">
+            <i class="iconify" data-icon="ion:save-sharp"></i> Guardar Cliente
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="mb-3">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="card config">
+            <div class="card-header">
+              <h4 class="pt-2">Datos del Cliente</h4>
+            </div>
+            <div class="card-body">
+              <flash-messages #flashCliente></flash-messages>
+              <div class="form-group mb-3">
+                <label class="mt-1 mb-2" for="nombre">Nombre:</label>
+                <input class="form-control input-form-config" type="text" name="nombre" #nombre="ngModel" [(ngModel)]="cliente.nombre" [ngClass]="{'is-invalid': nombre.errors && (nombre.touched || clienteForm.submitted), 'is-valid': ! nombre.errors}" minlength="2" required >
+                <div [hidden]="!nombre.errors?.['required']" class="invalid-feedback">Nombre requerido</div>
+                <div [hidden]="!nombre.errors?.['minlength']" class="invalid-feedback">Minimo 2 caracteres</div>
+              </div>
+              <div class="form-group mb-3">
+                <label class="mt-1 mb-2" for="apellidos">Apellidos:</label>
+                <input class="form-control input-form-config" type="text" name="apellidos" #apellidos="ngModel" [(ngModel)]="cliente.apellidos" [ngClass]="{'is-invalid': apellidos.errors && (apellidos.touched || clienteForm.submitted), 'is-valid': ! apellidos.errors}" minlength="5" required >
+                <div [hidden]="!apellidos.errors?.['required']" class="invalid-feedback">Apellidos requeridos</div>
+                <div [hidden]="!apellidos.errors?.['minlength']" class="invalid-feedback">Minimo 5 caracteres</div>
+              </div>
+              <div class="form-group mb-3">
+                <label class="mt-1 mb-2" for="genero">Genero:</label>
+                <div class="input-group">
+                  <input class="form-control input-form-config is-valid" type="text" name="genero" #genero="ngModel" [(ngModel)]="cliente.genero" readonly>
+                  <button class="btn-dropdown-config" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="iconify" data-icon="fe:drop-down"></i>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" (click)="cliente.genero='Masculino'">Masculino</a></li>
+                    <li><a class="dropdown-item" (click)="cliente.genero='Femenino'">Femenino</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <label class="mt-1 mb-2" for="celular">Celuar:</label>
+                <input class="form-control input-form-config" type="number" name="celular" #celular="ngModel" [(ngModel)]="cliente.celular" [ngClass]="{'is-invalid': celular.errors && (celular.touched || clienteForm.submitted), 'is-valid': ! celular.errors }" pattern="[0-9]{9}" required >
+                <div [hidden]="!celular.errors?.['required']" class="invalid-feedback">Numero de celular requerido</div>
+                <div [hidden]="!celular.errors?.['pattern']" class="invalid-feedback">Son 9 digitos</div>
+              </div>
+              <div class="form-group mb-3">
+                <label class="mt-1 mb-2" for="direccion">Direccion:</label>
+                <input class="form-control input-form-config is-valid" type="text" name="direccion" #direccio="ngModel" [(ngModel)]="cliente.direccion">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section *ngIf="isEditar" class="mb-3">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="card config">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h4 class="pt-2">Mascotas</h4>
+              <button class="btn btn-dark text-white float-end border-white border-1" (click)="openFormRegisterMascota(cliente!.id)">
+                <i class="iconify" data-icon="mdi:add-bold"></i>
+              </button>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <div class="table-form-container">
+                  <table class="table-form-config">
+                    <thead>
+                      <tr>
+                        <th scope="col" class="text-center" style="width: 50px">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Sexo</th>
+                        <th scope="col">Especie</th>
+                        <th scope="col">Raza</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Foto</th>
+                        <th scope="col">Edit</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let mascota of mascotasCliente | paginate: { id:'mascotasCliente', itemsPerPage: 5, currentPage: page }; let i = index">
+                        <td class="text-center">{{ ((page - 1) * 5) + (i + 1) }}</td>
+                        <td>{{mascota.nombre}}</td>
+                        <td>{{mascota.sexo}}</td>
+                        <td>{{mascota.especie}}</td>
+                        <td>{{mascota.raza}}</td>
+                        <td>{{mascota.fecha | date:'d/M/yyyy h:mm:ss a'}}</td>
+                        <td class="circle-image-container">
+                          <img class="circle-image" src="{{mascota.foto}}" width="50" height="50" onerror="this.src='../../../assets/imgs/no-img.png'"/>
+                        </td>
+                        <td>
+                          <a class="btn-edit-config"  routerLink='/menu/mascotas/editar/{{mascota.id}}'>
+                            <i class="iconify" data-icon="uil:edit"></i>
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </div>
+            <div class="card-footer">
+              <pagination-controls
+                id = 'mascotasCliente'
+                (pageChange)="page = $event"
+                (pageBoundsCorrection)="page = $event"
+                [maxSize]="5"
+                [directionLinks]="true"
+                [autoHide]="true"
+                [responsive]="true"
+                previousLabel="Anterior"
+                nextLabel="Siguiente"
+                screenReaderPaginationLabel="Paginacion"
+                screenReaderPageLabel="pagina"
+                screenReaderCurrentLabel="Estas en la pagina">
+              </pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</form>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="fotoModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <img src="{{cliente.foto}}" class="w-100 rounded" onerror="this.src='../../../assets/imgs/no-img.png'"/>
+        <div class="d-flex justify-content-between mt-3">
+          <label class="btn btn-primary">
+            <i class="iconify" data-icon="fa-solid:upload"></i> Subir imagen
+            <input class="d-none" type="file" id="inputImagen" (change)="onFileSelected($event)">
+          </label>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">
+            <i class="iconify" data-icon="fa-solid:save"></i> Guardar imagen
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

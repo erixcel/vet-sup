@@ -1,0 +1,168 @@
+<div class="container px-4">
+  <div class="d-flex justify-content-between align-items-center py-4">
+    <h3 class="title">Panel de Citas</h3>
+    <div class="d-flex justify-content-end">
+      <button class="btn-pdf-config mx-1" (click)="exportarPDF()">
+        <i class="iconify" data-icon="fa-solid:file-pdf"></i> PDF
+      </button>
+      <button class="btn-excel-config mx-1" (click)="exportarExcel()">
+        <i class="iconify" data-icon="file-icons:microsoft-excel"></i> EXCEL
+      </button>
+      <div class="d-block">
+        <div class="input-group">
+          <button class="btn-dropdown-config variant min ms-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="iconify" data-icon="system-uicons:filtering"></i> <span #estado> Todas</span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><span class="dropdown-item" (click)="estado.textContent = ' Pendientes'; loadListCitas('pendiente')">Pendientes</span></li>
+            <li><span class="dropdown-item" (click)="estado.textContent = ' Canceladas'; loadListCitas('cancelada')">Canceladas</span></li>
+            <li><span class="dropdown-item" (click)="estado.textContent = ' Atendidas'; loadListCitas('atendida')">Atendidas</span></li>
+            <li><span class="dropdown-item" (click)="estado.textContent = ' Todas'; loadListCitas('todas')">Todas</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="input-group pb-3">
+    <input type="text" class="form-control search-config" placeholder="Buscar..." [(ngModel)]="text" >
+    <div class="dropdown">
+      <button class="btn-dropdown-config min" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="iconify" data-icon="uil:filter"></i> <span #texto> Cliente</span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><span class="dropdown-item" (click)="reloadFilterCitas('cliente'); texto.textContent = ' Cliente'">Cliente</span></li>
+        <li><span class="dropdown-item" (click)="reloadFilterCitas('mascota'); texto.textContent = ' Mascota'">Mascota</span></li>
+        <li><span class="dropdown-item" (click)="reloadFilterCitas('celular'); texto.textContent = ' Celular'">Celular</span></li>
+        <li><span class="dropdown-item" (click)="reloadFilterCitas('fecha_programada'); texto.textContent = ' F-programada'">F-programada</span></li>
+        <li><span class="dropdown-item" (click)="reloadFilterCitas('fecha_atendida'); texto.textContent = ' F-atendida'">F-atendida</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table-config">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Cliente</th>
+          <th></th>
+          <th>Celular</th>
+          <th>Mascota</th>
+          <th></th>
+          <th>F-programada</th>
+          <th>F-atendida</th>
+          <th style="min-width: 120px;">Estado</th>
+          <th>Motivo</th>
+          <th style="min-width: 150px;">Mantenimiento</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cita of citas | filterTable:nameColum:text:isModified | paginate: { id:'tabCitas', itemsPerPage: 5, currentPage: page }; let i = index">
+          <td>{{cita.id}}</td>
+          <td>{{cita.cliente}}</td>
+          <td class="circle-image-container">
+            <img class="circle-image" src="{{cita.foto_cliente}}" width="50" height="50" onerror="this.src='../../../assets/imgs/no-img.png'"/>
+          </td>
+          <td>{{cita.celular}}</td>
+          <td>{{cita.mascota}}</td>
+          <td class="circle-image-container">
+            <img class="circle-image" src="{{cita.foto_mascota}}" width="50" height="50" onerror="this.src='../../../assets/imgs/no-img.png'"/>
+          </td>
+          <td>{{cita.fecha_programada | date:'d/M/yyyy h:mm:ss a'}}</td>
+          <td>{{cita?.fecha_atendida !== null ? (cita.fecha_atendida | date:'d/M/yyyy h:mm:ss a') : '------------'}}</td>
+          <td>
+            <i *ngIf="cita.estado === 'pendiente'" class="iconify color-normal" data-icon="svg-spinners:clock"></i>
+            <i *ngIf="cita.estado === 'atendida'" class="iconify color-correct" data-icon="fa6-solid:check"></i>
+            <i *ngIf="cita.estado === 'cancelada'" class="iconify color-cancelled" data-icon="ooui:cancel"></i>
+            {{cita.estado}}
+          </td>
+          <td>{{cita.motivo}}</td>
+          <td>
+            <div class="container-horizontal-buttons">
+              <a class="btn-edit-config" routerLink='/menu/citas/editar/{{cita.id}}'>
+                <i class="iconify" data-icon="uil:edit"></i>
+              </a>
+              <a *ngIf="(cita.estado === 'pendiente') && (isGroomer || isVeterinario)" class="btn-correct-config" id="abrirAtenderModal" data-bs-toggle="modal" data-bs-target="#atenderModal" (click)="id=cita.id">
+                <i class="iconify" data-icon="tabler:calendar-check"></i>
+              </a>
+              <a *ngIf="cita.estado === 'pendiente'" class="btn-cancel-config" id="abrirCancelarModal" data-bs-toggle="modal" data-bs-target="#cancelarModal" (click)="id=cita.id">
+                <i class="iconify" data-icon="line-md:cancel"></i>
+              </a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="ngx-pagination-container">
+    <pagination-controls
+      id="tabCitas"
+      class="ngx-pagination"
+      (pageChange)="page = $event"
+      (pageBoundsCorrection)="page = $event"
+      [maxSize]="5"
+      [directionLinks]="true"
+      [responsive]="true"
+      previousLabel="Anterior"
+      nextLabel="Siguiente"
+      screenReaderPaginationLabel="Paginacion"
+      screenReaderPageLabel="pagina"
+      screenReaderCurrentLabel="Estas en la pagina">
+    </pagination-controls>
+  </div>
+</div>
+
+<!-- Cancelar Modal -->
+<div class="modal fade" id="cancelarModal" style="overflow-y: auto;" >
+  <div class="modal-dialog-centered modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header bg-general-head-modal">
+        <h5 class="modal-title">Cancelar Cita #{{id}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #cerrarCancel></button>
+      </div>
+      <div class="modal-body bg-general-body-modal">
+        <form #anularForm="ngForm" (ngSubmit)="cancelar(anularForm,cerrarCancel,estado.textContent!)">
+          <div class="form-group mb-3">
+            <label class="my-1 mb-2 text-white" for="motivo">Motivo de cancelacion:</label>
+            <textarea class="form-control input-form-config" rows="4" name="motivo" #motivo="ngModel" [(ngModel)]="mensaje" [ngClass]="{'is-invalid': motivo.errors && (motivo.touched || anularForm.submitted), 'is-valid': ! motivo.errors}" minlength="5" required></textarea>
+            <div [hidden]="!motivo.errors?.['required']" class="invalid-feedback">Motivo requerido</div>
+            <div [hidden]="!motivo.errors?.['minlength']" class="invalid-feedback">Minimo 5 caracteres</div>
+          </div>
+          <button [hidden]="true" #enviarCancelacion type="submit"></button>
+        </form>
+      </div>
+      <div class="modal-footer bg-general-body-modal">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" (click)="enviarCancelacion.click()">Anular</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Atender Modal -->
+<div class="modal fade" id="atenderModal" style="overflow-y: auto;" >
+  <div class="modal-dialog-centered modal-dialog modal-md modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header bg-general-head-modal">
+        <h5 class="modal-title">Atender Cita #{{id}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #cerrarAtender></button>
+      </div>
+      <div class="modal-body bg-general-body-modal">
+        <div class="row">
+          <div class="col-12 mb-3">
+            <button class="btn btn-secondary w-100" (click)="openFormRegisterTratamiento(id,cerrarAtender)">
+              <i class="iconify" data-icon="game-icons:medical-pack-alt"></i> Servicio Medico
+            </button>
+          </div>
+          <div class="col-12">
+            <button class="btn btn-secondary w-100" (click)="openFormRegisterBanio(id,cerrarAtender)">
+              <i class="iconify" data-icon="streamline:travel-wafinder-sink-wash-clean-toilet-bathroom-water"></i> Servicio de Aseo
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

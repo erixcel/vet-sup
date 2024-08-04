@@ -1,0 +1,118 @@
+<div class="container">
+  <div class="row row-cols-2">
+    <div class="col-12 col-md-6">
+      <form #categoriaForm="ngForm" >
+        <section class="mt-3">
+          <div class="container">
+            <div class="row mb-3">
+              <div class="col">
+                <div class="title-form-container">
+                  <span><i class="iconify" data-icon="carbon:categories"></i> {{titleForm}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col my-1">
+                <button type="submit" class="btn-save-config" (click)="saveCategoria(categoriaForm,flashCategoria)">
+                  <i class="iconify" data-icon="ion:save-sharp"></i> {{textBottonSave}}
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="mb-3">
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <div class="card config">
+                  <div class="card-header">
+                    <h4 class="pt-2">Datos de la Categoria</h4>
+                  </div>
+                  <div class="card-body">
+                    <flash-messages #flashCategoria></flash-messages>
+                    <div class="form-group mb-3">
+                      <label class="mt-1 mb-2" for="nombre">Nombre:</label>
+                      <input class="form-control input-form-config" type="text" name="nombre" #nombre="ngModel" [(ngModel)]="categoria.nombre" [ngClass]="{'is-invalid': nombre.errors && (nombre.touched || categoriaForm.submitted), 'is-valid': ! nombre.errors}" minlength="2" required >
+                      <div [hidden]="!nombre.errors?.['required']" class="invalid-feedback">Nombre requerido</div>
+                      <div [hidden]="!nombre.errors?.['minlength']" class="invalid-feedback">Minimo 2 caracteres</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </form>
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="px-3">
+        <div class="d-flex justify-content-between align-items-center py-4">
+          <button class="btn-pdf-config me-1" (click)="exportarPDF()">
+            <i class="iconify" data-icon="fa-solid:file-pdf"></i> PDF
+          </button>
+          <h3 class="title">Listado de Categorias</h3>
+          <button class="btn-excel-config ms-1" (click)="exportarExcel()">
+            <i class="iconify" data-icon="file-icons:microsoft-excel"></i> EXCEL
+          </button>
+        </div>
+        <div class="input-group pb-3">
+          <input type="text" class="form-control search-config" placeholder="Buscar..." [(ngModel)]="text" >
+          <div class="dropdown">
+            <button class="btn-dropdown-config" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="iconify" data-icon="uil:filter"></i> <span #texto> Nombre</span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><span class="dropdown-item" (click)="reloadFilterCategorias('categoria'); texto.textContent = ' Nombre'">Nombre</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table-config">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Mantenimiento</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of categorias | filterTable:nameColum:text:isModified | paginate: { id:'tabCategorias', itemsPerPage: 8, currentPage: page }; let i = index">
+                <td>{{ ((page - 1) * 8) + (i + 1) }}</td>
+                <td>{{item.nombre}}</td>
+                <td>
+                  <div class="container-horizontal-buttons">
+                    <button *ngIf="!(item.id === categoria.id) && !isEditar" class="btn-edit-config me-2" (click)="setCategoria(item.id)">
+                      <i class="iconify" data-icon="uil:edit"></i> Editar
+                    </button>
+                    <button *ngIf="!(item.id === categoria.id) && !isEditar" class="btn-remove-config" (click)="deleteCategoria(item.id)">
+                      <i class="iconify" data-icon="bi:trash-fill"></i> Borrar
+                    </button>
+                    <button *ngIf="item.id === categoria.id" class="btn-select-config" (click)="cleanCategoria(categoriaForm)">
+                      <i class="iconify" data-icon="octicon:x-12"></i> Deseleccionar
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="ngx-pagination-container">
+          <pagination-controls
+            id="tabCategorias"
+            class="ngx-pagination"
+            (pageChange)="page = $event"
+            (pageBoundsCorrection)="page = $event"
+            [maxSize]="5"
+            [directionLinks]="true"
+            [responsive]="true"
+            previousLabel="Anterior"
+            nextLabel="Siguiente"
+            screenReaderPaginationLabel="Paginacion"
+            screenReaderPageLabel="pagina"
+            screenReaderCurrentLabel="Estas en la pagina">
+          </pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
